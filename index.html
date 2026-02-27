@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang="en" class="h-full" dir="ltr">
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -173,46 +173,60 @@
       transform: translateY(-4px);
     }
   </style>
-  <style>body { box-sizing: border-box; }</style>
+  <style>
+    body { box-sizing: border-box; }
+    [dir="rtl"] { text-align: right; }
+    [dir="rtl"] .flex-row-reverse { flex-direction: row-reverse; }
+    [dir="rtl"] .text-right-rtl { text-align: right; }
+    [dir="rtl"] .text-left-rtl { text-align: left; }
+  </style>
  </head>
  <body class="h-full font-sans bg-slate-950 text-gray-100 overflow-x-hidden">
-  <div id="app-wrapper" class="h-full overflow-auto">
-   <!-- Navigation -->
+  <div id="app-wrapper" class="h-full overflow-auto"><!-- Language Toggle -->
+   <div class="fixed top-20 right-6 md:right-12 z-40"><button onclick="switchLanguage()" class="bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transition-all"> <span id="lang-toggle">العربية</span> </button>
+   </div><!-- Navigation -->
    <nav class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-slate-900 to-slate-800 shadow-2xl border-b-2 border-blue-600">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
      <div class="flex items-center gap-3">
-      <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg flex items-center justify-center shadow-lg"><span class="text-white font-mono text-2xl font-bold">🏗️</span>
+      <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg flex items-center justify-center shadow-lg">
+       <span class="text-white font-mono text-2xl font-bold">🏗️</span>
       </div><span id="platform-title" class="font-mono text-2xl font-bold text-white">CONSTRUCTION</span>
      </div>
-     <div class="hidden md:flex items-center gap-8"><a href="#home" class="nav-link text-gray-300 hover:text-blue-400">Home</a> <a href="#projects" class="nav-link text-gray-300 hover:text-blue-400">Projects</a> <a href="#jobs" class="nav-link text-gray-300 hover:text-blue-400">Job Board</a> <a href="#dashboard" class="nav-link text-gray-300 hover:text-blue-400">Dashboard</a> <a href="#risk" class="nav-link text-gray-300 hover:text-blue-400">Risk AI</a> <a href="#analytics" class="nav-link text-gray-300 hover:text-blue-400">Analytics</a> <a href="#track" class="nav-link text-gray-300 hover:text-blue-400">Track</a> <a href="#contact" class="nav-link text-gray-300 hover:text-blue-400">Contact</a>
+     <div class="hidden md:flex items-center gap-8">
+      <a href="#home" class="nav-link text-gray-300 hover:text-blue-400" data-en="Home" data-ar="الرئيسية">Home</a> <a href="#projects" class="nav-link text-gray-300 hover:text-blue-400" data-en="Projects" data-ar="المشاريع">Projects</a> <a href="#jobs" class="nav-link text-gray-300 hover:text-blue-400" data-en="Job Board" data-ar="لوحة الوظائف">Job Board</a> <a href="#dashboard" class="nav-link text-gray-300 hover:text-blue-400" data-en="Dashboard" data-ar="لوحة التحكم">Dashboard</a> <a href="#risk" class="nav-link text-gray-300 hover:text-blue-400" data-en="Risk AI" data-ar="المخاطر">Risk AI</a> <a href="#analytics" class="nav-link text-gray-300 hover:text-blue-400" data-en="Analytics" data-ar="التحليلات">Analytics</a> <a href="#track" class="nav-link text-gray-300 hover:text-blue-400" data-en="Track" data-ar="المتابعة">Track</a> <a href="#contact" class="nav-link text-gray-300 hover:text-blue-400" data-en="Contact" data-ar="اتصل">Contact</a>
      </div><button id="mobile-menu-btn" class="md:hidden p-2 text-white">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg></button>
     </div>
     <div id="mobile-menu" class="hidden md:hidden bg-slate-800 border-t border-slate-700">
-     <div class="px-6 py-4 flex flex-col gap-4"><a href="#home" class="text-gray-300 hover:text-blue-400 font-medium">Home</a> <a href="#projects" class="text-gray-300 hover:text-blue-400 font-medium">Projects</a> <a href="#jobs" class="text-gray-300 hover:text-blue-400 font-medium">Job Board</a> <a href="#dashboard" class="text-gray-300 hover:text-blue-400 font-medium">Dashboard</a> <a href="#risk" class="text-gray-300 hover:text-blue-400 font-medium">Risk AI</a> <a href="#analytics" class="text-gray-300 hover:text-blue-400 font-medium">Analytics</a> <a href="#contact" class="text-gray-300 hover:text-blue-400 font-medium">Contact</a>
+     <div class="px-6 py-4 flex flex-col gap-4">
+      <a href="#home" class="text-gray-300 hover:text-blue-400 font-medium" data-en="Home" data-ar="الرئيسية">Home</a> <a href="#projects" class="text-gray-300 hover:text-blue-400 font-medium" data-en="Projects" data-ar="المشاريع">Projects</a> <a href="#jobs" class="text-gray-300 hover:text-blue-400 font-medium" data-en="Job Board" data-ar="لوحة الوظائف">Job Board</a> <a href="#dashboard" class="text-gray-300 hover:text-blue-400 font-medium" data-en="Dashboard" data-ar="لوحة التحكم">Dashboard</a> <a href="#risk" class="text-gray-300 hover:text-blue-400 font-medium" data-en="Risk AI" data-ar="المخاطر">Risk AI</a> <a href="#analytics" class="text-gray-300 hover:text-blue-400 font-medium" data-en="Analytics" data-ar="التحليلات">Analytics</a> <a href="#contact" class="text-gray-300 hover:text-blue-400 font-medium" data-en="Contact" data-ar="اتصل">Contact</a>
      </div>
     </div>
-   </nav><!-- Hero Section -->
+   </nav>
    <section id="home" class="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900">
     <div class="absolute inset-0 pointer-events-none opacity-20">
      <div class="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-blue-500 to-transparent rounded-full blur-3xl"></div>
      <div class="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-cyan-400 to-transparent rounded-full blur-3xl"></div>
     </div>
     <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
-     <div class="opacity-0 animate-fade-up mb-6"><span class="status-badge bg-gradient-to-r from-blue-600 to-cyan-500 text-white">🏗️ Global Construction Intelligence</span>
+     <div class="opacity-0 animate-fade-up mb-6">
+      <span class="status-badge bg-gradient-to-r from-blue-600 to-cyan-500 text-white" data-en="🏗️ Global Construction Intelligence" data-ar="🏗️ الذكاء الإنشائي العالمي">🏗️ Global Construction Intelligence</span>
      </div>
-     <h1 id="hero-headline" class="opacity-0 animate-fade-up delay-100 font-mono text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"><span class="gradient-text-blue">AI-Powered Construction</span><br><span class="text-white">Management Platform</span></h1>
-     <p id="platform-tagline" class="opacity-0 animate-fade-up delay-200 text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">Predictive scheduling, risk management, job matching, and site monitoring. Built for Dubai, Abu Dhabi, and global construction firms.</p>
-     <div class="opacity-0 animate-fade-up delay-300 flex flex-col sm:flex-row items-center justify-center gap-4"><a href="#projects" class="cta-btn-blue px-8 py-4 rounded-full text-lg shadow-lg"> Explore Projects </a> <button onclick="document.getElementById('jobs').scrollIntoView({behavior:'smooth'})" class="px-8 py-4 border-2 border-blue-400 text-blue-300 font-semibold rounded-full hover:border-cyan-300 hover:bg-slate-700 transition-all"> Browse Jobs </button>
+     <h1 id="hero-headline" class="opacity-0 animate-fade-up delay-100 font-mono text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"><span class="gradient-text-blue" data-en="AI-Powered Construction" data-ar="الإنشاء بقوة الذكاء الاصطناعي">AI-Powered Construction</span><br><span class="text-white" data-en="Management Platform" data-ar="منصة الإدارة">Management Platform</span></h1>
+     <p id="platform-tagline" class="opacity-0 animate-fade-up delay-200 text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed" data-en="Predictive scheduling, risk management, job matching, and site monitoring. Built for Dubai, Abu Dhabi, and global construction firms." data-ar="الجدولة التنبؤية وإدارة المخاطر ومطابقة الوظائف والمراقبة على الموقع. مبني لدبي وأبو ظبي والشركات الإنشائية العالمية.">Predictive scheduling, risk management, job matching, and site monitoring. Built for Dubai, Abu Dhabi, and global construction firms.</p>
+     <div class="opacity-0 animate-fade-up delay-300 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="#projects" class="cta-btn-blue px-8 py-4 rounded-full text-lg shadow-lg" data-en="Explore Projects" data-ar="استكشف المشاريع"> Explore Projects </a> <button onclick="document.getElementById('jobs').scrollIntoView({behavior:'smooth'})" class="px-8 py-4 border-2 border-blue-400 text-blue-300 font-semibold rounded-full hover:border-cyan-300 hover:bg-slate-700 transition-all" data-en="Browse Jobs" data-ar="استعرض الوظائف"> Browse Jobs </button>
      </div>
     </div>
    </section><!-- Projects Section -->
    <section id="projects" class="py-24 bg-slate-800">
     <div class="max-w-6xl mx-auto px-6">
-     <div class="text-center mb-16"><span class="status-badge bg-blue-600 text-white">📊 Active Projects</span>
-      <h2 id="services-title" class="font-mono text-4xl md:text-5xl font-bold text-white mt-4">Global Construction Projects</h2>
-      <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Real-time project tracking with AI-powered risk management and predictive scheduling</p>
+     <div class="text-center mb-16">
+      <span class="status-badge bg-blue-600 text-white" data-en="📊 Active Projects" data-ar="📊 المشاريع النشطة">📊 Active Projects</span>
+      <h2 id="services-title" class="font-mono text-4xl md:text-5xl font-bold text-white mt-4" data-en="Global Construction Projects" data-ar="مشاريع إنشائية عالمية">Global Construction Projects</h2>
+      <p class="text-gray-300 mt-4 max-w-2xl mx-auto" data-en="Real-time project tracking with AI-powered risk management and predictive scheduling" data-ar="تتبع المشروع في الوقت الفعلي مع إدارة المخاطر بقوة الذكاء الاصطناعي والجدولة التنبؤية">Real-time project tracking with AI-powered risk management and predictive scheduling</p>
      </div>
      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div class="project-card bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl overflow-hidden p-6 border border-slate-600">
@@ -223,8 +237,7 @@
        </div>
        <h3 class="font-mono text-xl font-bold text-white mb-3">Downtown Tower 2024</h3>
        <p class="text-gray-400 text-sm leading-relaxed mb-4">50-story commercial complex | 2,500+ workforce | $450M budget</p>
-       <div class="flex items-center justify-between text-xs">
-        <span class="text-gray-400">Progress: 65%</span> <span class="text-green-400 font-bold">✓ On Track</span>
+       <div class="flex items-center justify-between text-xs"><span class="text-gray-400">Progress: 65%</span> <span class="text-green-400 font-bold">✓ On Track</span>
        </div>
        <div class="w-full bg-slate-600 rounded-full h-2 mt-2">
         <div class="bg-gradient-to-r from-green-500 to-cyan-500 h-2 rounded-full" style="width: 65%"></div>
@@ -238,8 +251,7 @@
        </div>
        <h3 class="font-mono text-xl font-bold text-white mb-3">Residential Complex Alpha</h3>
        <p class="text-gray-400 text-sm leading-relaxed mb-4">800 units residential | 1,200+ workers | $280M budget</p>
-       <div class="flex items-center justify-between text-xs">
-        <span class="text-gray-400">Progress: 42%</span> <span class="text-yellow-400 font-bold">⚠ At Risk</span>
+       <div class="flex items-center justify-between text-xs"><span class="text-gray-400">Progress: 42%</span> <span class="text-yellow-400 font-bold">⚠ At Risk</span>
        </div>
        <div class="w-full bg-slate-600 rounded-full h-2 mt-2">
         <div class="bg-gradient-to-r from-yellow-500 to-orange-500 h-2 rounded-full" style="width: 42%"></div>
@@ -253,8 +265,7 @@
        </div>
        <h3 class="font-mono text-xl font-bold text-white mb-3">Industrial Park Dev.</h3>
        <p class="text-gray-400 text-sm leading-relaxed mb-4">Manufacturing hub | 800 workers | $195M budget</p>
-       <div class="flex items-center justify-between text-xs">
-        <span class="text-gray-400">Progress: 28%</span> <span class="text-green-400 font-bold">✓ On Track</span>
+       <div class="flex items-center justify-between text-xs"><span class="text-gray-400">Progress: 28%</span> <span class="text-green-400 font-bold">✓ On Track</span>
        </div>
        <div class="w-full bg-slate-600 rounded-full h-2 mt-2">
         <div class="bg-gradient-to-r from-green-500 to-cyan-500 h-2 rounded-full" style="width: 28%"></div>
@@ -268,8 +279,7 @@
        </div>
        <h3 class="font-mono text-xl font-bold text-white mb-3">Cultural Center 2024</h3>
        <p class="text-gray-400 text-sm leading-relaxed mb-4">Museum &amp; exhibition | 1,500+ workforce | $320M budget</p>
-       <div class="flex items-center justify-between text-xs">
-        <span class="text-gray-400">Progress: 78%</span> <span class="text-green-400 font-bold">✓ Ahead</span>
+       <div class="flex items-center justify-between text-xs"><span class="text-gray-400">Progress: 78%</span> <span class="text-green-400 font-bold">✓ Ahead</span>
        </div>
        <div class="w-full bg-slate-600 rounded-full h-2 mt-2">
         <div class="bg-gradient-to-r from-green-500 to-cyan-500 h-2 rounded-full" style="width: 78%"></div>
@@ -283,8 +293,7 @@
        </div>
        <h3 class="font-mono text-xl font-bold text-white mb-3">Power Station Upgrade</h3>
        <p class="text-gray-400 text-sm leading-relaxed mb-4">Energy infrastructure | 600 workers | $160M budget</p>
-       <div class="flex items-center justify-between text-xs">
-        <span class="text-gray-400">Progress: 55%</span> <span class="text-green-400 font-bold">✓ On Track</span>
+       <div class="flex items-center justify-between text-xs"><span class="text-gray-400">Progress: 55%</span> <span class="text-green-400 font-bold">✓ On Track</span>
        </div>
        <div class="w-full bg-slate-600 rounded-full h-2 mt-2">
         <div class="bg-gradient-to-r from-green-500 to-cyan-500 h-2 rounded-full" style="width: 55%"></div>
@@ -298,8 +307,7 @@
        </div>
        <h3 class="font-mono text-xl font-bold text-white mb-3">Infrastructure Bridge</h3>
        <p class="text-gray-400 text-sm leading-relaxed mb-4">Major crossing project | 900 workers | $240M budget</p>
-       <div class="flex items-center justify-between text-xs">
-        <span class="text-gray-400">Progress: 71%</span> <span class="text-green-400 font-bold">✓ On Track</span>
+       <div class="flex items-center justify-between text-xs"><span class="text-gray-400">Progress: 71%</span> <span class="text-green-400 font-bold">✓ On Track</span>
        </div>
        <div class="w-full bg-slate-600 rounded-full h-2 mt-2">
         <div class="bg-gradient-to-r from-green-500 to-cyan-500 h-2 rounded-full" style="width: 71%"></div>
@@ -310,9 +318,10 @@
    </section><!-- Job Board Section -->
    <section id="jobs" class="py-24 bg-slate-900">
     <div class="max-w-6xl mx-auto px-6">
-     <div class="text-center mb-16"><span class="status-badge bg-green-600 text-white">💼 Job Opportunities</span>
-      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mt-4">Construction Job Board</h2>
-      <p class="text-gray-300 mt-4 max-w-2xl mx-auto">AI-matched job opportunities across UAE construction projects</p>
+     <div class="text-center mb-16">
+      <span class="status-badge bg-green-600 text-white" data-en="💼 Job Opportunities" data-ar="💼 فرص العمل">💼 Job Opportunities</span>
+      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mt-4" data-en="Construction Job Board" data-ar="لوحة الوظائف الإنشائية">Construction Job Board</h2>
+      <p class="text-gray-300 mt-4 max-w-2xl mx-auto" data-en="AI-matched job opportunities across UAE construction projects" data-ar="فرص عمل مطابقة بالذكاء الاصطناعي عبر مشاريع الإنشاء في الإمارات">AI-matched job opportunities across UAE construction projects</p>
      </div>
      <div class="grid md:grid-cols-2 gap-6 mb-12">
       <div class="bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl p-6 border border-slate-600">
@@ -323,11 +332,9 @@
         </div><span class="text-xs font-bold text-green-400 bg-green-950 px-3 py-1 rounded-full">Urgent</span>
        </div>
        <p class="text-gray-400 text-sm mb-4">Lead 2,500+ person workforce. 10+ years experience required.</p>
-       <div class="flex gap-2 mb-4">
-        <span class="text-xs bg-blue-950 text-blue-300 px-2 py-1 rounded">Leadership</span> <span class="text-xs bg-blue-950 text-blue-300 px-2 py-1 rounded">Planning</span> <span class="text-xs bg-blue-950 text-blue-300 px-2 py-1 rounded">Safety</span>
+       <div class="flex gap-2 mb-4"><span class="text-xs bg-blue-950 text-blue-300 px-2 py-1 rounded">Leadership</span> <span class="text-xs bg-blue-950 text-blue-300 px-2 py-1 rounded">Planning</span> <span class="text-xs bg-blue-950 text-blue-300 px-2 py-1 rounded">Safety</span>
        </div>
-       <div class="flex items-center justify-between">
-        <span class="font-bold text-cyan-400">AED 8,500 - 12,000</span> <button class="text-blue-400 hover:text-blue-300 font-semibold text-sm">Apply →</button>
+       <div class="flex items-center justify-between"><span class="font-bold text-cyan-400">AED 8,500 - 12,000</span> <button class="text-blue-400 hover:text-blue-300 font-semibold text-sm">Apply →</button>
        </div>
       </div>
       <div class="bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl p-6 border border-slate-600">
@@ -338,11 +345,9 @@
         </div><span class="text-xs font-bold text-green-400 bg-green-950 px-3 py-1 rounded-full">Available</span>
        </div>
        <p class="text-gray-400 text-sm mb-4">On-site monitoring &amp; QA/QC. Civil engineering background.</p>
-       <div class="flex gap-2 mb-4">
-        <span class="text-xs bg-purple-950 text-purple-300 px-2 py-1 rounded">Engineering</span> <span class="text-xs bg-purple-950 text-purple-300 px-2 py-1 rounded">QA/QC</span> <span class="text-xs bg-purple-950 text-purple-300 px-2 py-1 rounded">BIM</span>
+       <div class="flex gap-2 mb-4"><span class="text-xs bg-purple-950 text-purple-300 px-2 py-1 rounded">Engineering</span> <span class="text-xs bg-purple-950 text-purple-300 px-2 py-1 rounded">QA/QC</span> <span class="text-xs bg-purple-950 text-purple-300 px-2 py-1 rounded">BIM</span>
        </div>
-       <div class="flex items-center justify-between">
-        <span class="font-bold text-cyan-400">AED 4,500 - 6,500</span> <button class="text-blue-400 hover:text-blue-300 font-semibold text-sm">Apply →</button>
+       <div class="flex items-center justify-between"><span class="font-bold text-cyan-400">AED 4,500 - 6,500</span> <button class="text-blue-400 hover:text-blue-300 font-semibold text-sm">Apply →</button>
        </div>
       </div>
       <div class="bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl p-6 border border-slate-600">
@@ -353,11 +358,9 @@
         </div><span class="text-xs font-bold text-yellow-400 bg-yellow-950 px-3 py-1 rounded-full">High Priority</span>
        </div>
        <p class="text-gray-400 text-sm mb-4">Manage 800-person workforce. OSHA/ISOcert required.</p>
-       <div class="flex gap-2 mb-4">
-        <span class="text-xs bg-red-950 text-red-300 px-2 py-1 rounded">Safety</span> <span class="text-xs bg-red-950 text-red-300 px-2 py-1 rounded">Compliance</span> <span class="text-xs bg-red-950 text-red-300 px-2 py-1 rounded">Training</span>
+       <div class="flex gap-2 mb-4"><span class="text-xs bg-red-950 text-red-300 px-2 py-1 rounded">Safety</span> <span class="text-xs bg-red-950 text-red-300 px-2 py-1 rounded">Compliance</span> <span class="text-xs bg-red-950 text-red-300 px-2 py-1 rounded">Training</span>
        </div>
-       <div class="flex items-center justify-between">
-        <span class="font-bold text-cyan-400">AED 5,000 - 7,000</span> <button class="text-blue-400 hover:text-blue-300 font-semibold text-sm">Apply →</button>
+       <div class="flex items-center justify-between"><span class="font-bold text-cyan-400">AED 5,000 - 7,000</span> <button class="text-blue-400 hover:text-blue-300 font-semibold text-sm">Apply →</button>
        </div>
       </div>
       <div class="bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl p-6 border border-slate-600">
@@ -368,11 +371,9 @@
         </div><span class="text-xs font-bold text-green-400 bg-green-950 px-3 py-1 rounded-full">Available</span>
        </div>
        <p class="text-gray-400 text-sm mb-4">Operate cranes, excavators, dozers. License required.</p>
-       <div class="flex gap-2 mb-4">
-        <span class="text-xs bg-orange-950 text-orange-300 px-2 py-1 rounded">Heavy Equipment</span> <span class="text-xs bg-orange-950 text-orange-300 px-2 py-1 rounded">Operations</span>
+       <div class="flex gap-2 mb-4"><span class="text-xs bg-orange-950 text-orange-300 px-2 py-1 rounded">Heavy Equipment</span> <span class="text-xs bg-orange-950 text-orange-300 px-2 py-1 rounded">Operations</span>
        </div>
-       <div class="flex items-center justify-between">
-        <span class="font-bold text-cyan-400">AED 3,500 - 5,000</span> <button class="text-blue-400 hover:text-blue-300 font-semibold text-sm">Apply →</button>
+       <div class="flex items-center justify-between"><span class="font-bold text-cyan-400">AED 3,500 - 5,000</span> <button class="text-blue-400 hover:text-blue-300 font-semibold text-sm">Apply →</button>
        </div>
       </div>
      </div>
@@ -380,9 +381,10 @@
    </section><!-- Dashboard Section -->
    <section id="dashboard" class="py-24 bg-slate-800">
     <div class="max-w-6xl mx-auto px-6">
-     <div class="text-center mb-16"><span class="status-badge bg-blue-600 text-white">📊 Analytics</span>
-      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mt-4">Dashboard Overview</h2>
-      <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Real-time KPIs across all construction projects</p>
+     <div class="text-center mb-16">
+      <span class="status-badge bg-blue-600 text-white" data-en="📊 Analytics" data-ar="📊 التحليلات">📊 Analytics</span>
+      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mt-4" data-en="Dashboard Overview" data-ar="نظرة عامة على لوحة التحكم">Dashboard Overview</h2>
+      <p class="text-gray-300 mt-4 max-w-2xl mx-auto" data-en="Real-time KPIs across all construction projects" data-ar="مؤشرات الأداء الرئيسية في الوقت الفعلي عبر جميع مشاريع الإنشاء">Real-time KPIs across all construction projects</p>
      </div>
      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
       <div class="stat-box bg-slate-700">
@@ -434,21 +436,24 @@
       <h3 class="font-mono text-2xl font-bold text-white mb-6">AI Predictions</h3>
       <div class="space-y-4">
        <div>
-        <div class="flex justify-between items-center mb-2"><span class="font-semibold text-gray-300">Downtown Tower - Delay Risk</span> <span class="text-sm text-yellow-400">12% Risk</span>
+        <div class="flex justify-between items-center mb-2">
+         <span class="font-semibold text-gray-300">Downtown Tower - Delay Risk</span> <span class="text-sm text-yellow-400">12% Risk</span>
         </div>
         <div class="w-full bg-slate-600 rounded-full h-2 overflow-hidden">
          <div class="bg-gradient-to-r from-yellow-500 to-orange-500 h-full" style="width: 12%"></div>
         </div>
        </div>
        <div>
-        <div class="flex justify-between items-center mb-2"><span class="font-semibold text-gray-300">Residential Complex - Budget Status</span> <span class="text-sm text-red-400">18% Over</span>
+        <div class="flex justify-between items-center mb-2">
+         <span class="font-semibold text-gray-300">Residential Complex - Budget Status</span> <span class="text-sm text-red-400">18% Over</span>
         </div>
         <div class="w-full bg-slate-600 rounded-full h-2 overflow-hidden">
          <div class="bg-gradient-to-r from-red-500 to-orange-500 h-full" style="width: 118%"></div>
         </div>
        </div>
        <div>
-        <div class="flex justify-between items-center mb-2"><span class="font-semibold text-gray-300">Industrial Park - Workforce Stability</span> <span class="text-sm text-green-400">94% Stable</span>
+        <div class="flex justify-between items-center mb-2">
+         <span class="font-semibold text-gray-300">Industrial Park - Workforce Stability</span> <span class="text-sm text-green-400">94% Stable</span>
         </div>
         <div class="w-full bg-slate-600 rounded-full h-2 overflow-hidden">
          <div class="bg-gradient-to-r from-green-500 to-cyan-500 h-full" style="width: 94%"></div>
@@ -460,9 +465,10 @@
    </section><!-- Risk Management Section -->
    <section id="risk" class="py-24 bg-slate-900">
     <div class="max-w-6xl mx-auto px-6">
-     <div class="text-center mb-16"><span class="status-badge bg-red-600 text-white">⚠️ Risk Management</span>
-      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mt-4">AI Risk Assessment</h2>
-      <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Predictive risk scoring and mitigation strategies</p>
+     <div class="text-center mb-16">
+      <span class="status-badge bg-red-600 text-white" data-en="⚠️ Risk Management" data-ar="⚠️ إدارة المخاطر">⚠️ Risk Management</span>
+      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mt-4" data-en="AI Risk Assessment" data-ar="تقييم المخاطر بالذكاء الاصطناعي">AI Risk Assessment</h2>
+      <p class="text-gray-300 mt-4 max-w-2xl mx-auto" data-en="Predictive risk scoring and mitigation strategies" data-ar="التصنيف التنبؤي للمخاطر واستراتيجيات التخفيف">Predictive risk scoring and mitigation strategies</p>
      </div>
      <div class="grid md:grid-cols-3 gap-6">
       <div class="bg-gradient-to-br from-red-900 to-slate-800 rounded-2xl p-6 border border-red-600">
@@ -483,28 +489,23 @@
    <section id="request-form" class="py-24 bg-slate-800">
     <div class="max-w-4xl mx-auto px-6">
      <div class="text-center mb-12">
-      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mb-4">Track Projects &amp; Jobs</h2>
-      <p class="text-gray-300 text-lg">Submit project or job opportunity details</p>
+      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mb-4" data-en="Track Projects &amp; Jobs" data-ar="تتبع المشاريع والوظائف">Track Projects &amp; Jobs</h2>
+      <p class="text-gray-300 text-lg" data-en="Submit project or job opportunity details" data-ar="إرسال تفاصيل المشروع أو فرصة العمل">Submit project or job opportunity details</p>
      </div>
      <form id="serviceForm" class="bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl p-8 border border-slate-600">
       <div class="grid md:grid-cols-2 gap-6 mb-6">
-       <div>
-        <label class="block text-sm font-semibold text-gray-300 mb-2">Project / Job Title *</label> <input type="text" id="fullName" class="form-input w-full" placeholder="E.g., Downtown Tower 2024" required>
+       <div><label class="block text-sm font-semibold text-gray-300 mb-2">Project / Job Title *</label> <input type="text" id="fullName" class="form-input w-full" placeholder="E.g., Downtown Tower 2024" required>
        </div>
-       <div>
-        <label class="block text-sm font-semibold text-gray-300 mb-2">Email *</label> <input type="email" id="email" class="form-input w-full" placeholder="your.email@company.ae" required>
+       <div><label class="block text-sm font-semibold text-gray-300 mb-2">Email *</label> <input type="email" id="email" class="form-input w-full" placeholder="your.email@company.ae" required>
        </div>
       </div>
       <div class="grid md:grid-cols-2 gap-6 mb-6">
-       <div>
-        <label class="block text-sm font-semibold text-gray-300 mb-2">Phone *</label> <input type="tel" id="phone" class="form-input w-full" placeholder="+971 50 123 4567" required>
+       <div><label class="block text-sm font-semibold text-gray-300 mb-2">Phone *</label> <input type="tel" id="phone" class="form-input w-full" placeholder="+971 50 123 4567" required>
        </div>
-       <div>
-        <label class="block text-sm font-semibold text-gray-300 mb-2">Type *</label> <select id="serviceType" class="form-input w-full" required> <option value="">Select type</option> <option value="Project">Project Tracking</option> <option value="Job">Job Posting</option> <option value="Risk">Risk Assessment</option> <option value="Resource">Resource Planning</option> </select>
+       <div><label class="block text-sm font-semibold text-gray-300 mb-2">Type *</label> <select id="serviceType" class="form-input w-full" required> <option value="">Select type</option> <option value="Project">Project Tracking</option> <option value="Job">Job Posting</option> <option value="Risk">Risk Assessment</option> <option value="Resource">Resource Planning</option> </select>
        </div>
       </div>
-      <div class="mb-6">
-       <label class="block text-sm font-semibold text-gray-300 mb-2">Details / Notes</label> <textarea id="notes" class="form-input w-full h-24 resize-none" placeholder="Additional project or job information..."></textarea>
+      <div class="mb-6"><label class="block text-sm font-semibold text-gray-300 mb-2">Details / Notes</label> <textarea id="notes" class="form-input w-full h-24 resize-none" placeholder="Additional project or job information..."></textarea>
       </div><button type="submit" id="submitBtn" class="cta-btn-blue w-full py-4 rounded-lg text-lg font-bold">Submit</button>
      </form>
     </div>
@@ -512,8 +513,8 @@
    <section id="track" class="py-24 bg-slate-900">
     <div class="max-w-6xl mx-auto px-6">
      <div class="text-center mb-16">
-      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mb-4">Track Submissions</h2>
-      <p class="text-gray-300 text-lg">View all submitted projects and job posts</p>
+      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mb-4" data-en="Track Submissions" data-ar="تتبع الطلبات">Track Submissions</h2>
+      <p class="text-gray-300 text-lg" data-en="View all submitted projects and job posts" data-ar="عرض جميع المشاريع المرسلة والمنشورات الوظيفية">View all submitted projects and job posts</p>
      </div>
      <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 border border-slate-700">
       <div id="requestsList" class="space-y-3">
@@ -524,9 +525,10 @@
    </section><!-- Analytics Section -->
    <section id="analytics" class="py-24 bg-slate-800">
     <div class="max-w-6xl mx-auto px-6">
-     <div class="text-center mb-16"><span class="status-badge bg-cyan-600 text-white">📈 Advanced Analytics</span>
-      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mt-4">Performance Insights</h2>
-      <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Data-driven insights for construction excellence</p>
+     <div class="text-center mb-16">
+      <span class="status-badge bg-cyan-600 text-white" data-en="📈 Advanced Analytics" data-ar="📈 التحليلات المتقدمة">📈 Advanced Analytics</span>
+      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mt-4" data-en="Performance Insights" data-ar="رؤى الأداء">Performance Insights</h2>
+      <p class="text-gray-300 mt-4 max-w-2xl mx-auto" data-en="Data-driven insights for construction excellence" data-ar="رؤى يحركها البيانات لتحقيق التميز في الإنشاء">Data-driven insights for construction excellence</p>
      </div>
      <div class="grid md:grid-cols-2 gap-8">
       <div class="bg-gradient-to-br from-blue-950 to-slate-800 rounded-2xl p-8 border border-blue-600">
@@ -564,8 +566,8 @@
    <section id="contact" class="py-24 bg-slate-900">
     <div class="max-w-4xl mx-auto px-6">
      <div class="text-center mb-16">
-      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mb-4">Get in Touch</h2>
-      <p class="text-xl text-gray-300">Contact us for construction platform inquiries</p>
+      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mb-4" data-en="Get in Touch" data-ar="تواصل معنا">Get in Touch</h2>
+      <p class="text-xl text-gray-300" data-en="Contact us for construction platform inquiries" data-ar="اتصل بنا للاستفسارات حول منصة الإنشاء">Contact us for construction platform inquiries</p>
      </div>
      <div class="grid md:grid-cols-3 gap-8 mb-16">
       <div class="text-center p-8 bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl border border-slate-600">
@@ -597,16 +599,16 @@
      <div class="grid md:grid-cols-4 gap-12 mb-12">
       <div>
        <div class="flex items-center gap-2 mb-4">
-        <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg flex items-center justify-center"><span class="font-mono font-bold">🏗️</span>
+        <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg flex items-center justify-center">
+         <span class="font-mono font-bold">🏗️</span>
         </div><span class="font-mono text-xl font-bold text-white">CONSTRUCTION</span>
        </div>
        <p class="text-gray-400 mb-6">AI-powered construction management for global projects</p>
-       <div class="flex gap-4"><a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
-         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
-          <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+       <div class="flex gap-4">
+        <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
+         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
          </svg></a> <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
-         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z" />
+         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z" />
          </svg></a>
        </div>
       </div>
@@ -645,6 +647,29 @@
    </footer>
   </div>
   <script>
+    const translations = {
+      en: {
+        'Platform_Title': 'CONSTRUCTION',
+        'Platform_Tagline': 'Predictive scheduling, risk management, job matching, and site monitoring. Built for Dubai, Abu Dhabi, and global construction firms.',
+        'Hero_Headline': 'AI-Powered Construction Management Platform',
+        'Services_Title': 'Global Construction Projects',
+        'Contact_Email': 'saba.koof21@gmail.com',
+        'Contact_Phone': '+251953536342',
+        'Contact_Builder': 'NIBRAS AHMED',
+        'No_Submissions': 'No submissions yet. Add one above!'
+      },
+      ar: {
+        'Platform_Title': 'الإنشاء',
+        'Platform_Tagline': 'الجدولة التنبؤية وإدارة المخاطر ومطابقة الوظائف والمراقبة على الموقع. مبني لدبي وأبو ظبي والشركات الإنشائية العالمية.',
+        'Hero_Headline': 'منصة إدارة الإنشاء بقوة الذكاء الاصطناعي',
+        'Services_Title': 'مشاريع إنشائية عالمية',
+        'Contact_Email': 'saba.koof21@gmail.com',
+        'Contact_Phone': '+251953536342',
+        'Contact_Builder': 'نبراس أحمد',
+        'No_Submissions': 'لا توجد طلبات حتى الآن. أضف واحدًا أعلاه!'
+      }
+    };
+
     const defaultConfig = {
       platform_title: 'CONSTRUCTION',
       platform_tagline: 'Predictive scheduling, risk management, job matching, and site monitoring. Built for Dubai, Abu Dhabi, and global construction firms.',
@@ -655,8 +680,89 @@
       contact_builder: 'NIBRAS AHMED'
     };
 
+    let currentLanguage = 'en';
     let config = { ...defaultConfig };
     let allData = [];
+
+    function switchLanguage() {
+      currentLanguage = currentLanguage === 'en' ? 'ar' : 'en';
+      const htmlElement = document.documentElement;
+      htmlElement.lang = currentLanguage;
+      htmlElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+      
+      const toggleBtn = document.getElementById('lang-toggle');
+      toggleBtn.textContent = currentLanguage === 'en' ? 'العربية' : 'English';
+      
+      updatePageLanguage();
+      localStorage.setItem('language', currentLanguage);
+    }
+
+    function updatePageLanguage() {
+      const elements = document.querySelectorAll('[data-en][data-ar]');
+      elements.forEach(el => {
+        const text = currentLanguage === 'en' ? el.dataset.en : el.dataset.ar;
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') {
+          if (el.placeholder) el.placeholder = text;
+          if (el.tagName === 'SELECT') {
+            el.querySelectorAll('option').forEach((opt, idx) => {
+              if (idx === 0) opt.textContent = currentLanguage === 'en' ? 'Select type' : 'اختر النوع';
+              if (idx === 1) opt.textContent = currentLanguage === 'en' ? 'Project Tracking' : 'تتبع المشروع';
+              if (idx === 2) opt.textContent = currentLanguage === 'en' ? 'Job Posting' : 'نشر الوظيفة';
+              if (idx === 3) opt.textContent = currentLanguage === 'en' ? 'Risk Assessment' : 'تقييم المخاطر';
+              if (idx === 4) opt.textContent = currentLanguage === 'en' ? 'Resource Planning' : 'تخطيط الموارد';
+            });
+          }
+        } else {
+          el.textContent = text;
+        }
+      });
+
+      // Update form labels
+      updateFormLabels();
+    }
+
+    function updateFormLabels() {
+      const labels = {
+        en: {
+          'fullName': 'Project / Job Title *',
+          'email': 'Email *',
+          'phone': 'Phone *',
+          'serviceType': 'Type *',
+          'notes': 'Details / Notes',
+          'submit': 'Submit',
+          'noSubmissions': 'No submissions yet. Add one above!'
+        },
+        ar: {
+          'fullName': 'عنوان المشروع / الوظيفة *',
+          'email': 'البريد الإلكتروني *',
+          'phone': 'الهاتف *',
+          'serviceType': 'النوع *',
+          'notes': 'التفاصيل / الملاحظات',
+          'submit': 'إرسال',
+          'noSubmissions': 'لا توجد طلبات حتى الآن. أضف واحدًا أعلاه!'
+        }
+      };
+
+      // Update label text
+      document.querySelectorAll('label').forEach(label => {
+        const forAttr = label.getAttribute('for');
+        if (forAttr && labels[currentLanguage][forAttr]) {
+          label.textContent = labels[currentLanguage][forAttr];
+        }
+      });
+
+      // Update button text
+      const submitBtn = document.getElementById('submitBtn');
+      if (submitBtn) {
+        submitBtn.textContent = labels[currentLanguage]['submit'];
+      }
+
+      // Update no submissions text
+      const noSubmissionsEl = document.querySelector('[id="requestsList"] p');
+      if (noSubmissionsEl) {
+        noSubmissionsEl.textContent = labels[currentLanguage]['noSubmissions'];
+      }
+    }
 
     // Element SDK Configuration
     if (window.elementSdk) {
@@ -686,6 +792,15 @@
 
     // Data SDK Initialization
     async function initApp() {
+      // Load saved language
+      const savedLanguage = localStorage.getItem('language') || 'en';
+      currentLanguage = savedLanguage;
+      const htmlElement = document.documentElement;
+      htmlElement.lang = currentLanguage;
+      htmlElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+      const toggleBtn = document.getElementById('lang-toggle');
+      toggleBtn.textContent = currentLanguage === 'en' ? 'العربية' : 'English';
+      
       if (window.dataSdk) {
         const dataHandler = {
           onDataChanged(data) {
@@ -700,6 +815,7 @@
         }
       }
       applyConfig();
+      updatePageLanguage();
       setupEventListeners();
     }
 
@@ -743,28 +859,31 @@
       };
 
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Submitting...';
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = currentLanguage === 'en' ? 'Submitting...' : 'جاري الإرسال...';
 
       if (window.dataSdk && allData.length < 999) {
         const result = await window.dataSdk.create(formData);
         if (result.isOk) {
-          showToast('Submission saved successfully!');
+          showToast(currentLanguage === 'en' ? 'Submission saved successfully!' : 'تم حفظ الطلب بنجاح!');
           document.getElementById('serviceForm').reset();
         } else {
-          showToast('Failed to save submission', 'error');
+          showToast(currentLanguage === 'en' ? 'Failed to save submission' : 'فشل حفظ الطلب', 'error');
         }
       } else if (allData.length >= 999) {
-        showToast('Maximum submissions reached (999 limit)', 'error');
+        showToast(currentLanguage === 'en' ? 'Maximum submissions reached (999 limit)' : 'تم الوصول إلى الحد الأقصى للطلبات (حد 999)', 'error');
       }
 
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Submit';
+      submitBtn.textContent = originalText;
     }
 
     function renderSubmissions() {
       const list = document.getElementById('requestsList');
       if (!allData || allData.length === 0) {
-        list.innerHTML = '<p class="text-center text-gray-500 py-8">No submissions yet. Add one above!</p>';
+        list.innerHTML = currentLanguage === 'en' 
+          ? '<p class="text-center text-gray-500 py-8">No submissions yet. Add one above!</p>'
+          : '<p class="text-center text-gray-500 py-8">لا توجد طلبات حتى الآن. أضف واحدًا أعلاه!</p>';
         return;
       }
 
@@ -774,7 +893,7 @@
             <h4 class="font-semibold text-white">${item.title || 'N/A'}</h4>
             <p class="text-sm text-gray-400">${item.status || 'N/A'} • ${item.description || ''}</p>
           </div>
-          <button onclick="deleteSubmission('${item.__backendId}')" class="text-red-400 hover:text-red-300 font-semibold text-sm">Delete</button>
+          <button onclick="deleteSubmission('${item.__backendId}')" class="text-red-400 hover:text-red-300 font-semibold text-sm">${currentLanguage === 'en' ? 'Delete' : 'حذف'}</button>
         </div>
       `).join('');
     }
@@ -785,7 +904,7 @@
       if (item) {
         const result = await window.dataSdk.delete(item);
         if (result.isOk) {
-          showToast('Submission deleted successfully');
+          showToast(currentLanguage === 'en' ? 'Submission deleted successfully' : 'تم حذف الطلب بنجاح');
         }
       }
     }
@@ -804,5 +923,5 @@
     // Initialize app
     initApp();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d4b315e6714fbc6',t:'MTc3MjIzMjEyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d4b50e312acfbc6',t:'MTc3MjIzMzQxMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
