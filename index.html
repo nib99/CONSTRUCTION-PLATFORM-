@@ -1,0 +1,1739 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CONSTRUCTION PLATFORM - AI-Driven Global Construction Management</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    .font-mono { font-family: 'Space Mono', monospace; }
+    .font-sans { font-family: 'Poppins', sans-serif; }
+    body { font-family: 'Poppins', sans-serif; }
+    
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideInLeft { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes slideInRight { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); } 50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    
+    .animate-fade-up { animation: fadeInUp 0.8s ease-out forwards; }
+    .animate-slide-left { animation: slideInLeft 0.8s ease-out forwards; }
+    .animate-slide-right { animation: slideInRight 0.8s ease-out forwards; }
+    .animate-scale-in { animation: scaleIn 0.6s ease-out forwards; }
+    
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-500 { animation-delay: 0.5s; }
+    
+    .gradient-text-blue {
+      background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .project-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: #3b82f6 !important;
+      box-shadow: 0 20px 50px rgba(59, 130, 246, 0.2);
+    }
+    
+    .cta-btn-blue {
+      position: relative;
+      background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%);
+      color: white;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    
+    .cta-btn-blue:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(59, 130, 246, 0.35);
+    }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 8px 16px;
+      background: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .form-input {
+      padding: 14px 16px;
+      border: 2px solid rgba(59, 130, 246, 0.2);
+      border-radius: 10px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      background: rgba(15, 23, 42, 0.5);
+      color: white;
+    }
+    
+    .form-input::placeholder { color: rgba(148, 163, 184, 0.7); }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      background: rgba(15, 23, 42, 0.8);
+    }
+    
+    .success-toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%);
+      color: white;
+      padding: 16px 24px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+      animation: slideInRight 0.4s ease-out;
+      z-index: 50;
+    }
+    
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 0.8s linear infinite;
+    }
+    
+    .request-item {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .request-item:hover {
+      border-color: #3b82f6;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+    }
+    
+    .nav-link {
+      position: relative;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #3b82f6;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .stat-box {
+      text-align: center;
+      padding: 30px 20px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(15, 23, 42, 0.05) 100%);
+      border-radius: 16px;
+      border: 1px solid rgba(59, 130, 246, 0.15);
+      transition: all 0.3s ease;
+    }
+    
+    .stat-box:hover {
+      border-color: rgba(59, 130, 246, 0.4);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(15, 23, 42, 0.1) 100%);
+      transform: translateY(-4px);
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CONSTRUCTION PLATFORM - AI-Driven Global Construction Management</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    .font-mono { font-family: 'Space Mono', monospace; }
+    .font-sans { font-family: 'Poppins', sans-serif; }
+    body { font-family: 'Poppins', sans-serif; }
+    
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideInLeft { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes slideInRight { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); } 50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    
+    .animate-fade-up { animation: fadeInUp 0.8s ease-out forwards; }
+    .animate-slide-left { animation: slideInLeft 0.8s ease-out forwards; }
+    .animate-slide-right { animation: slideInRight 0.8s ease-out forwards; }
+    .animate-scale-in { animation: scaleIn 0.6s ease-out forwards; }
+    
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-500 { animation-delay: 0.5s; }
+    
+    .gradient-text-blue {
+      background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .project-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: #3b82f6 !important;
+      box-shadow: 0 20px 50px rgba(59, 130, 246, 0.2);
+    }
+    
+    .cta-btn-blue {
+      position: relative;
+      background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%);
+      color: white;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    
+    .cta-btn-blue:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(59, 130, 246, 0.35);
+    }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 8px 16px;
+      background: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .form-input {
+      padding: 14px 16px;
+      border: 2px solid rgba(59, 130, 246, 0.2);
+      border-radius: 10px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      background: rgba(15, 23, 42, 0.5);
+      color: white;
+    }
+    
+    .form-input::placeholder { color: rgba(148, 163, 184, 0.7); }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      background: rgba(15, 23, 42, 0.8);
+    }
+    
+    .success-toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%);
+      color: white;
+      padding: 16px 24px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+      animation: slideInRight 0.4s ease-out;
+      z-index: 50;
+    }
+    
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 0.8s linear infinite;
+    }
+    
+    .request-item {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .request-item:hover {
+      border-color: #3b82f6;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+    }
+    
+    .nav-link {
+      position: relative;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #3b82f6;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .stat-box {
+      text-align: center;
+      padding: 30px 20px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(15, 23, 42, 0.05) 100%);
+      border-radius: 16px;
+      border: 1px solid rgba(59, 130, 246, 0.15);
+      transition: all 0.3s ease;
+    }
+    
+    .stat-box:hover {
+      border-color: rgba(59, 130, 246, 0.4);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(15, 23, 42, 0.1) 100%);
+      transform: translateY(-4px);
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+ </head>
+ <body class="h-full font-sans bg-slate-950 text-gray-100 overflow-x-hidden">
+  <div id="app-wrapper" class="h-full overflow-auto"><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-slate-900 to-slate-800 shadow-2xl border-b-2 border-blue-600">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+     <div class="flex items-center gap-3">
+      <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg flex items-center justify-center shadow-lg">
+       <span class="text-white font-mono text-2xl font-bold">🏗️</span>
+      </div><span id="platform-title" class="font-mono text-2xl font-bold text-white">CONSTRUCTION</span>
+     </div>
+     <div class="hidden md:flex items-center gap-8">
+      <a href="#home" class="nav-link text-gray-300 hover:text-blue-400">Home</a> <a href="#projects" class="nav-link text-gray-300 hover:text-blue-400">Projects</a> <a href="#jobs" class="nav-link text-gray-300 hover:text-blue-400">Job Board</a> <a href="#dashboard" class="nav-link text-gray-300 hover:text-blue-400">Dashboard</a> <a href="#risk" class="nav-link text-gray-300 hover:text-blue-400">Risk AI</a> <a href="#analytics" class="nav-link text-gray-300 hover:text-blue-400">Analytics</a> <a href="#track" class="nav-link text-gray-300 hover:text-blue-400">Track</a> <a href="#contact" class="nav-link text-gray-300 hover:text-blue-400">Contact</a>
+     </div><button id="mobile-menu-btn" class="md:hidden p-2 text-white">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg></button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-slate-800 border-t border-slate-700">
+     <div class="px-6 py-4 flex flex-col gap-4">
+      <a href="#home" class="text-gray-300 hover:text-blue-400 font-medium">Home</a> <a href="#projects" class="text-gray-300 hover:text-blue-400 font-medium">Projects</a> <a href="#jobs" class="text-gray-300 hover:text-blue-400 font-medium">Job Board</a> <a href="#dashboard" class="text-gray-300 hover:text-blue-400 font-medium">Dashboard</a> <a href="#risk" class="text-gray-300 hover:text-blue-400 font-medium">Risk AI</a> <a href="#analytics" class="text-gray-300 hover:text-blue-400 font-medium">Analytics</a> <a href="#contact" class="text-gray-300 hover:text-blue-400 font-medium">Contact</a>
+     </div>
+    </div>
+   </nav><!-- Hero Section -->
+   <section id="home" class="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900">
+    <div class="absolute inset-0 pointer-events-none opacity-20">
+     <div class="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-blue-500 to-transparent rounded-full blur-3xl"></div>
+     <div class="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-cyan-400 to-transparent rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+     <div class="opacity-0 animate-fade-up mb-6">
+      <span class="status-badge bg-gradient-to-r from-blue-600 to-cyan-500 text-white">🏗️ Global Construction Intelligence</span>
+     </div>
+     <h1 id="hero-headline" class="opacity-0 animate-fade-up delay-100 font-mono text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"><span class="gradient-text-blue">AI-Powered Construction</span><br><span class="text-white">Management Platform</span></h1>
+     <p id="platform-tagline" class="opacity-0 animate-fade-up delay-200 text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">Predictive scheduling, risk management, job matching, and site monitoring. Built for Dubai, Abu Dhabi, and global construction firms.</p>
+     <div class="opacity-0 animate-fade-up delay-300 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="#projects" class="cta-btn-blue px-8 py-4 rounded-full text-lg shadow-lg"> Explore Projects </a> <button onclick="document.getElementById('jobs').scrollIntoView({behavior:'smooth'})" class="px-8 py-4 border-2 border-blue-400 text-blue-300 font-semibold rounded-full hover:border-cyan-300 hover:bg-slate-700 transition-all"> Browse Jobs </button>
+     </div>
+    </div>
+   </section><!-- Projects Section -->
+   <section id="projects" class="py-24 bg-slate-800">
+    <div class="max-w-6xl mx-auto px-6">
+     <div class="text-center mb-16">
+      <span class="status-badge bg-blue-600 text-white">📊 Active Projects</span>
+      <h2 id="services-title" class="font-mono text-4xl md:text-5xl font-bold text-white mt-4">Global Construction Projects</h2>
+      <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Real-time project tracking with AI-powered risk management and predictive scheduling</p>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="project-card bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl overflow-hidden p-6 border border-slate-600">
+       <div class="flex items-start justify-between mb-4">
+        <div class="text-4xl">
+         🏢
+        </div><span class="text-xs font-bold text-blue-400 bg-blue-950 px-3 py-1 rounded-full">Dubai</span>
+       </div>
+       <h3 class="font-mono text-xl font-bold text-white mb-3">Downtown Tower 2024</h3>
+       <p class="text-gray-400 text-sm leading-relaxed mb-4">50-story commercial complex | 2,500+ workforce | $450M budget</p>
+       <div class="flex items-center justify-between text-xs"><span class="text-gray-400">Progress: 65%</span> <span class="text-green-400 font-bold">✓ On Track</span>
+       </div>
+       <div class="w-full bg-slate-600 rounded-full h-2 mt-2">
+        <div class="bg-gradient-to-r from-green-500 to-cyan-500 h-2 rounded-full" style="width: 65%"></div>
+       </div>
+      </div>
+      <div class="project-card bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl overflow-hidden p-6 border border-slate-600">
+       <div class="flex items-start justify-between mb-4">
+        <div class="text-4xl">
+         🏠
+        </div><span class="text-xs font-bold text-orange-400 bg-orange-950 px-3 py-1 rounded-full">Abu Dhabi</span>
+       </div>
+       <h3 class="font-mono text-xl font-bold text-white mb-3">Residential Complex Alpha</h3>
+       <p class="text-gray-400 text-sm leading-relaxed mb-4">800 units residential | 1,200+ workers | $280M budget</p>
+       <div class="flex items-center justify-between text-xs"><span class="text-gray-400">Progress: 42%</span> <span class="text-yellow-400 font-bold">⚠ At Risk</span>
+       </div>
+       <div class="w-full bg-slate-600 rounded-full h-2 mt-2">
+        <div class="bg-gradient-to-r from-yellow-500 to-orange-500 h-2 rounded-full" style="width: 42%"></div>
+       </div>
+      </div>
+      <div class="project-card bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl overflow-hidden p-6 border border-slate-600">
+       <div class="flex items-start justify-between mb-4">
+        <div class="text-4xl">
+         🏗️
+        </div><span class="text-xs font-bold text-purple-400 bg-purple-950 px-3 py-1 rounded-full">Sharjah</span>
+       </div>
+       <h3 class="font-mono text-xl font-bold text-white mb-3">Industrial Park Dev.</h3>
+       <p class="text-gray-400 text-sm leading-relaxed mb-4">Manufacturing hub | 800 workers | $195M budget</p>
+       <div class="flex items-center justify-between text-xs"><span class="text-gray-400">Progress: 28%</span> <span class="text-green-400 font-bold">✓ On Track</span>
+       </div>
+       <div class="w-full bg-slate-600 rounded-full h-2 mt-2">
+        <div class="bg-gradient-to-r from-green-500 to-cyan-500 h-2 rounded-full" style="width: 28%"></div>
+       </div>
+      </div>
+      <div class="project-card bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl overflow-hidden p-6 border border-slate-600">
+       <div class="flex items-start justify-between mb-4">
+        <div class="text-4xl">
+         🏛️
+        </div><span class="text-xs font-bold text-blue-400 bg-blue-950 px-3 py-1 rounded-full">Dubai</span>
+       </div>
+       <h3 class="font-mono text-xl font-bold text-white mb-3">Cultural Center 2024</h3>
+       <p class="text-gray-400 text-sm leading-relaxed mb-4">Museum &amp; exhibition | 1,500+ workforce | $320M budget</p>
+       <div class="flex items-center justify-between text-xs"><span class="text-gray-400">Progress: 78%</span> <span class="text-green-400 font-bold">✓ Ahead</span>
+       </div>
+       <div class="w-full bg-slate-600 rounded-full h-2 mt-2">
+        <div class="bg-gradient-to-r from-green-500 to-cyan-500 h-2 rounded-full" style="width: 78%"></div>
+       </div>
+      </div>
+      <div class="project-card bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl overflow-hidden p-6 border border-slate-600">
+       <div class="flex items-start justify-between mb-4">
+        <div class="text-4xl">
+         ⚡
+        </div><span class="text-xs font-bold text-green-400 bg-green-950 px-3 py-1 rounded-full">RAK</span>
+       </div>
+       <h3 class="font-mono text-xl font-bold text-white mb-3">Power Station Upgrade</h3>
+       <p class="text-gray-400 text-sm leading-relaxed mb-4">Energy infrastructure | 600 workers | $160M budget</p>
+       <div class="flex items-center justify-between text-xs"><span class="text-gray-400">Progress: 55%</span> <span class="text-green-400 font-bold">✓ On Track</span>
+       </div>
+       <div class="w-full bg-slate-600 rounded-full h-2 mt-2">
+        <div class="bg-gradient-to-r from-green-500 to-cyan-500 h-2 rounded-full" style="width: 55%"></div>
+       </div>
+      </div>
+      <div class="project-card bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl overflow-hidden p-6 border border-slate-600">
+       <div class="flex items-start justify-between mb-4">
+        <div class="text-4xl">
+         🌉
+        </div><span class="text-xs font-bold text-cyan-400 bg-cyan-950 px-3 py-1 rounded-full">Ajman</span>
+       </div>
+       <h3 class="font-mono text-xl font-bold text-white mb-3">Infrastructure Bridge</h3>
+       <p class="text-gray-400 text-sm leading-relaxed mb-4">Major crossing project | 900 workers | $240M budget</p>
+       <div class="flex items-center justify-between text-xs"><span class="text-gray-400">Progress: 71%</span> <span class="text-green-400 font-bold">✓ On Track</span>
+       </div>
+       <div class="w-full bg-slate-600 rounded-full h-2 mt-2">
+        <div class="bg-gradient-to-r from-green-500 to-cyan-500 h-2 rounded-full" style="width: 71%"></div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Job Board Section -->
+   <section id="jobs" class="py-24 bg-slate-900">
+    <div class="max-w-6xl mx-auto px-6">
+     <div class="text-center mb-16">
+      <span class="status-badge bg-green-600 text-white">💼 Job Opportunities</span>
+      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mt-4">Construction Job Board</h2>
+      <p class="text-gray-300 mt-4 max-w-2xl mx-auto">AI-matched job opportunities across UAE construction projects</p>
+     </div>
+     <div class="grid md:grid-cols-2 gap-6 mb-12">
+      <div class="bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl p-6 border border-slate-600">
+       <div class="flex items-start justify-between mb-4">
+        <div>
+         <h3 class="font-mono text-xl font-bold text-white">Senior Project Manager</h3>
+         <p class="text-gray-400 text-sm mt-1">Downtown Tower 2024 • Dubai</p>
+        </div><span class="text-xs font-bold text-green-400 bg-green-950 px-3 py-1 rounded-full">Urgent</span>
+       </div>
+       <p class="text-gray-400 text-sm mb-4">Lead 2,500+ person workforce. 10+ years experience required.</p>
+       <div class="flex gap-2 mb-4"><span class="text-xs bg-blue-950 text-blue-300 px-2 py-1 rounded">Leadership</span> <span class="text-xs bg-blue-950 text-blue-300 px-2 py-1 rounded">Planning</span> <span class="text-xs bg-blue-950 text-blue-300 px-2 py-1 rounded">Safety</span>
+       </div>
+       <div class="flex items-center justify-between"><span class="font-bold text-cyan-400">AED 8,500 - 12,000</span> <button class="text-blue-400 hover:text-blue-300 font-semibold text-sm">Apply →</button>
+       </div>
+      </div>
+      <div class="bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl p-6 border border-slate-600">
+       <div class="flex items-start justify-between mb-4">
+        <div>
+         <h3 class="font-mono text-xl font-bold text-white">Site Engineer</h3>
+         <p class="text-gray-400 text-sm mt-1">Cultural Center • Dubai</p>
+        </div><span class="text-xs font-bold text-green-400 bg-green-950 px-3 py-1 rounded-full">Available</span>
+       </div>
+       <p class="text-gray-400 text-sm mb-4">On-site monitoring &amp; QA/QC. Civil engineering background.</p>
+       <div class="flex gap-2 mb-4"><span class="text-xs bg-purple-950 text-purple-300 px-2 py-1 rounded">Engineering</span> <span class="text-xs bg-purple-950 text-purple-300 px-2 py-1 rounded">QA/QC</span> <span class="text-xs bg-purple-950 text-purple-300 px-2 py-1 rounded">BIM</span>
+       </div>
+       <div class="flex items-center justify-between"><span class="font-bold text-cyan-400">AED 4,500 - 6,500</span> <button class="text-blue-400 hover:text-blue-300 font-semibold text-sm">Apply →</button>
+       </div>
+      </div>
+      <div class="bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl p-6 border border-slate-600">
+       <div class="flex items-start justify-between mb-4">
+        <div>
+         <h3 class="font-mono text-xl font-bold text-white">Safety Supervisor</h3>
+         <p class="text-gray-400 text-sm mt-1">Industrial Park • Sharjah</p>
+        </div><span class="text-xs font-bold text-yellow-400 bg-yellow-950 px-3 py-1 rounded-full">High Priority</span>
+       </div>
+       <p class="text-gray-400 text-sm mb-4">Manage 800-person workforce. OSHA/ISOcert required.</p>
+       <div class="flex gap-2 mb-4"><span class="text-xs bg-red-950 text-red-300 px-2 py-1 rounded">Safety</span> <span class="text-xs bg-red-950 text-red-300 px-2 py-1 rounded">Compliance</span> <span class="text-xs bg-red-950 text-red-300 px-2 py-1 rounded">Training</span>
+       </div>
+       <div class="flex items-center justify-between"><span class="font-bold text-cyan-400">AED 5,000 - 7,000</span> <button class="text-blue-400 hover:text-blue-300 font-semibold text-sm">Apply →</button>
+       </div>
+      </div>
+      <div class="bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl p-6 border border-slate-600">
+       <div class="flex items-start justify-between mb-4">
+        <div>
+         <h3 class="font-mono text-xl font-bold text-white">Heavy Equipment Operator</h3>
+         <p class="text-gray-400 text-sm mt-1">Infrastructure Bridge • Ajman</p>
+        </div><span class="text-xs font-bold text-green-400 bg-green-950 px-3 py-1 rounded-full">Available</span>
+       </div>
+       <p class="text-gray-400 text-sm mb-4">Operate cranes, excavators, dozers. License required.</p>
+       <div class="flex gap-2 mb-4"><span class="text-xs bg-orange-950 text-orange-300 px-2 py-1 rounded">Heavy Equipment</span> <span class="text-xs bg-orange-950 text-orange-300 px-2 py-1 rounded">Operations</span>
+       </div>
+       <div class="flex items-center justify-between"><span class="font-bold text-cyan-400">AED 3,500 - 5,000</span> <button class="text-blue-400 hover:text-blue-300 font-semibold text-sm">Apply →</button>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Dashboard Section -->
+   <section id="dashboard" class="py-24 bg-slate-800">
+    <div class="max-w-6xl mx-auto px-6">
+     <div class="text-center mb-16">
+      <span class="status-badge bg-blue-600 text-white">📊 Analytics</span>
+      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mt-4">Dashboard Overview</h2>
+      <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Real-time KPIs across all construction projects</p>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      <div class="stat-box bg-slate-700">
+       <div class="font-mono text-4xl font-bold mb-2 text-blue-400">
+        $2.15B
+       </div>
+       <div class="text-gray-300 font-semibold">
+        Total Portfolio Value
+       </div>
+       <div class="text-sm text-blue-400 mt-2">
+        ↑ 8% YoY
+       </div>
+      </div>
+      <div class="stat-box bg-slate-700">
+       <div class="font-mono text-4xl font-bold mb-2 text-green-400">
+        87%
+       </div>
+       <div class="text-gray-300 font-semibold">
+        On-Time Completion
+       </div>
+       <div class="text-sm text-green-400 mt-2">
+        ↑ 5% this quarter
+       </div>
+      </div>
+      <div class="stat-box bg-slate-700">
+       <div class="font-mono text-4xl font-bold mb-2 text-purple-400">
+        8,900+
+       </div>
+       <div class="text-gray-300 font-semibold">
+        Active Workers
+       </div>
+       <div class="text-sm text-purple-400 mt-2">
+        ↑ 2,100 new hires
+       </div>
+      </div>
+      <div class="stat-box bg-slate-700">
+       <div class="font-mono text-4xl font-bold mb-2 text-orange-400">
+        98.5%
+       </div>
+       <div class="text-gray-300 font-semibold">
+        Safety Compliance
+       </div>
+       <div class="text-sm text-orange-400 mt-2">
+        ↑ 1.2% improvement
+       </div>
+      </div>
+     </div>
+     <div class="bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl p-8 border border-slate-600">
+      <h3 class="font-mono text-2xl font-bold text-white mb-6">AI Predictions</h3>
+      <div class="space-y-4">
+       <div>
+        <div class="flex justify-between items-center mb-2">
+         <span class="font-semibold text-gray-300">Downtown Tower - Delay Risk</span> <span class="text-sm text-yellow-400">12% Risk</span>
+        </div>
+        <div class="w-full bg-slate-600 rounded-full h-2 overflow-hidden">
+         <div class="bg-gradient-to-r from-yellow-500 to-orange-500 h-full" style="width: 12%"></div>
+        </div>
+       </div>
+       <div>
+        <div class="flex justify-between items-center mb-2">
+         <span class="font-semibold text-gray-300">Residential Complex - Budget Status</span> <span class="text-sm text-red-400">18% Over</span>
+        </div>
+        <div class="w-full bg-slate-600 rounded-full h-2 overflow-hidden">
+         <div class="bg-gradient-to-r from-red-500 to-orange-500 h-full" style="width: 118%"></div>
+        </div>
+       </div>
+       <div>
+        <div class="flex justify-between items-center mb-2">
+         <span class="font-semibold text-gray-300">Industrial Park - Workforce Stability</span> <span class="text-sm text-green-400">94% Stable</span>
+        </div>
+        <div class="w-full bg-slate-600 rounded-full h-2 overflow-hidden">
+         <div class="bg-gradient-to-r from-green-500 to-cyan-500 h-full" style="width: 94%"></div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Risk Management Section -->
+   <section id="risk" class="py-24 bg-slate-900">
+    <div class="max-w-6xl mx-auto px-6">
+     <div class="text-center mb-16">
+      <span class="status-badge bg-red-600 text-white">⚠️ Risk Management</span>
+      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mt-4">AI Risk Assessment</h2>
+      <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Predictive risk scoring and mitigation strategies</p>
+     </div>
+     <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-gradient-to-br from-red-900 to-slate-800 rounded-2xl p-6 border border-red-600">
+       <h3 class="font-mono text-lg font-bold text-red-300 mb-3">🔴 High Risk</h3>
+       <p class="text-gray-300 text-sm mb-4">Residential Complex: Workforce shortage (18% below target)</p><span class="inline-block bg-red-950 text-red-300 text-xs px-2 py-1 rounded">Action Required</span>
+      </div>
+      <div class="bg-gradient-to-br from-yellow-900 to-slate-800 rounded-2xl p-6 border border-yellow-600">
+       <h3 class="font-mono text-lg font-bold text-yellow-300 mb-3">🟡 Medium Risk</h3>
+       <p class="text-gray-300 text-sm mb-4">Downtown Tower: Weather delays predicted (60% probability)</p><span class="inline-block bg-yellow-950 text-yellow-300 text-xs px-2 py-1 rounded">Monitor</span>
+      </div>
+      <div class="bg-gradient-to-br from-green-900 to-slate-800 rounded-2xl p-6 border border-green-600">
+       <h3 class="font-mono text-lg font-bold text-green-300 mb-3">🟢 Low Risk</h3>
+       <p class="text-gray-300 text-sm mb-4">Power Station: All KPIs within tolerance (Excellent)</p><span class="inline-block bg-green-950 text-green-300 text-xs px-2 py-1 rounded">On Track</span>
+      </div>
+     </div>
+    </div>
+   </section><!-- Project Submission Form -->
+   <section id="request-form" class="py-24 bg-slate-800">
+    <div class="max-w-4xl mx-auto px-6">
+     <div class="text-center mb-12">
+      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mb-4">Track Projects &amp; Jobs</h2>
+      <p class="text-gray-300 text-lg">Submit project or job opportunity details</p>
+     </div>
+     <form id="serviceForm" class="bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl p-8 border border-slate-600">
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+       <div><label class="block text-sm font-semibold text-gray-300 mb-2">Project / Job Title *</label> <input type="text" id="fullName" class="form-input w-full" placeholder="E.g., Downtown Tower 2024" required>
+       </div>
+       <div><label class="block text-sm font-semibold text-gray-300 mb-2">Email *</label> <input type="email" id="email" class="form-input w-full" placeholder="your.email@company.ae" required>
+       </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+       <div><label class="block text-sm font-semibold text-gray-300 mb-2">Phone *</label> <input type="tel" id="phone" class="form-input w-full" placeholder="+971 50 123 4567" required>
+       </div>
+       <div><label class="block text-sm font-semibold text-gray-300 mb-2">Type *</label> <select id="serviceType" class="form-input w-full" required> <option value="">Select type</option> <option value="Project">Project Tracking</option> <option value="Job">Job Posting</option> <option value="Risk">Risk Assessment</option> <option value="Resource">Resource Planning</option> </select>
+       </div>
+      </div>
+      <div class="mb-6"><label class="block text-sm font-semibold text-gray-300 mb-2">Details / Notes</label> <textarea id="notes" class="form-input w-full h-24 resize-none" placeholder="Additional project or job information..."></textarea>
+      </div><button type="submit" id="submitBtn" class="cta-btn-blue w-full py-4 rounded-lg text-lg font-bold">Submit</button>
+     </form>
+    </div>
+   </section><!-- Track Section -->
+   <section id="track" class="py-24 bg-slate-900">
+    <div class="max-w-6xl mx-auto px-6">
+     <div class="text-center mb-16">
+      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mb-4">Track Submissions</h2>
+      <p class="text-gray-300 text-lg">View all submitted projects and job posts</p>
+     </div>
+     <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 border border-slate-700">
+      <div id="requestsList" class="space-y-3">
+       <p class="text-center text-gray-500 py-8">No submissions yet. Add one above!</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Analytics Section -->
+   <section id="analytics" class="py-24 bg-slate-800">
+    <div class="max-w-6xl mx-auto px-6">
+     <div class="text-center mb-16">
+      <span class="status-badge bg-cyan-600 text-white">📈 Advanced Analytics</span>
+      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mt-4">Performance Insights</h2>
+      <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Data-driven insights for construction excellence</p>
+     </div>
+     <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-gradient-to-br from-blue-950 to-slate-800 rounded-2xl p-8 border border-blue-600">
+       <h3 class="font-mono text-2xl font-bold text-white mb-6">Project Performance</h3>
+       <div class="space-y-4">
+        <div class="flex items-end gap-1 h-32">
+         <div class="flex-1 bg-blue-600 rounded-t-lg opacity-80" style="height: 60%"></div>
+         <div class="flex-1 bg-blue-500 rounded-t-lg opacity-90" style="height: 75%"></div>
+         <div class="flex-1 bg-blue-700 rounded-t-lg" style="height: 100%"></div>
+         <div class="flex-1 bg-blue-600 rounded-t-lg opacity-90" style="height: 85%"></div>
+        </div>
+        <p class="text-sm text-gray-400">📈 Completion rate trending upward</p>
+       </div>
+      </div>
+      <div class="bg-gradient-to-br from-cyan-950 to-slate-800 rounded-2xl p-8 border border-cyan-600">
+       <h3 class="font-mono text-2xl font-bold text-white mb-6">Budget Distribution</h3>
+       <div class="space-y-3">
+        <div class="flex items-center gap-4">
+         <div class="w-4 h-4 rounded-full bg-blue-500"></div><span class="text-sm text-gray-300 flex-1">Labor Costs</span> <span class="font-bold text-blue-400">42%</span>
+        </div>
+        <div class="flex items-center gap-4">
+         <div class="w-4 h-4 rounded-full bg-cyan-500"></div><span class="text-sm text-gray-300 flex-1">Materials</span> <span class="font-bold text-cyan-400">35%</span>
+        </div>
+        <div class="flex items-center gap-4">
+         <div class="w-4 h-4 rounded-full bg-purple-500"></div><span class="text-sm text-gray-300 flex-1">Equipment</span> <span class="font-bold text-purple-400">18%</span>
+        </div>
+        <div class="flex items-center gap-4">
+         <div class="w-4 h-4 rounded-full bg-green-500"></div><span class="text-sm text-gray-300 flex-1">Contingency</span> <span class="font-bold text-green-400">5%</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Contact Section -->
+   <section id="contact" class="py-24 bg-slate-900">
+    <div class="max-w-4xl mx-auto px-6">
+     <div class="text-center mb-16">
+      <h2 class="font-mono text-4xl md:text-5xl font-bold text-white mb-4">Get in Touch</h2>
+      <p class="text-xl text-gray-300">Contact us for construction platform inquiries</p>
+     </div>
+     <div class="grid md:grid-cols-3 gap-8 mb-16">
+      <div class="text-center p-8 bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl border border-slate-600">
+       <div class="text-4xl mb-4">
+        📧
+       </div>
+       <h3 class="font-mono text-xl font-bold text-white mb-2">Email</h3>
+       <p id="contact-email" class="text-gray-300 font-medium">saba.koof21@gmail.com</p>
+      </div>
+      <div class="text-center p-8 bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl border border-slate-600">
+       <div class="text-4xl mb-4">
+        📱
+       </div>
+       <h3 class="font-mono text-xl font-bold text-white mb-2">Phone</h3>
+       <p id="contact-phone" class="text-gray-300 font-medium">+251953536342</p>
+      </div>
+      <div class="text-center p-8 bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl border border-slate-600">
+       <div class="text-4xl mb-4">
+        🏗️
+       </div>
+       <h3 class="font-mono text-xl font-bold text-white mb-2">Built By</h3>
+       <p id="contact-builder" class="text-gray-300 font-medium">NIBRAS AHMED</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="bg-slate-950 text-gray-400 py-16 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-6">
+     <div class="grid md:grid-cols-4 gap-12 mb-12">
+      <div>
+       <div class="flex items-center gap-2 mb-4">
+        <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg flex items-center justify-center">
+         <span class="font-mono font-bold">🏗️</span>
+        </div><span class="font-mono text-xl font-bold text-white">CONSTRUCTION</span>
+       </div>
+       <p class="text-gray-400 mb-6">AI-powered construction management for global projects</p>
+       <div class="flex gap-4">
+        <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
+         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+         </svg></a> <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
+         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z" />
+         </svg></a>
+       </div>
+      </div>
+      <div>
+       <h4 class="font-mono text-lg font-bold text-white mb-6">Services</h4>
+       <ul class="space-y-3">
+        <li><a href="#projects" class="text-gray-400 hover:text-blue-500 transition">Project Management</a></li>
+        <li><a href="#jobs" class="text-gray-400 hover:text-blue-500 transition">Job Matching</a></li>
+        <li><a href="#risk" class="text-gray-400 hover:text-blue-500 transition">Risk Assessment</a></li>
+        <li><a href="#analytics" class="text-gray-400 hover:text-blue-500 transition">Analytics</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="font-mono text-lg font-bold text-white mb-6">Company</h4>
+       <ul class="space-y-3">
+        <li><a href="#home" class="text-gray-400 hover:text-blue-500 transition">About</a></li>
+        <li><a href="#contact" class="text-gray-400 hover:text-blue-500 transition">Contact</a></li>
+        <li><a href="#" class="text-gray-400 hover:text-blue-500 transition">Careers</a></li>
+        <li><a href="#" class="text-gray-400 hover:text-blue-500 transition">Blog</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="font-mono text-lg font-bold text-white mb-6">Legal</h4>
+       <ul class="space-y-3">
+        <li><a href="#" class="text-gray-400 hover:text-blue-500 transition">Terms of Use</a></li>
+        <li><a href="#" class="text-gray-400 hover:text-blue-500 transition">Privacy Policy</a></li>
+        <li><a href="#" class="text-gray-400 hover:text-blue-500 transition">Security</a></li>
+        <li><a href="#" class="text-gray-400 hover:text-blue-500 transition">Compliance</a></li>
+       </ul>
+      </div>
+     </div>
+     <div class="pt-8 border-t border-slate-800 text-center text-gray-500">
+      <p>© 2024 CONSTRUCTION PLATFORM. Built by NIBRAS AHMED | All rights reserved.</p>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      platform_title: 'CONSTRUCTION',
+      platform_tagline: 'Predictive scheduling, risk management, job matching, and site monitoring. Built for Dubai, Abu Dhabi, and global construction firms.',
+      hero_headline: 'AI-Powered Construction Management Platform',
+      services_title: 'Global Construction Projects',
+      contact_email: 'saba.koof21@gmail.com',
+      contact_phone: '+251953536342',
+      contact_builder: 'NIBRAS AHMED'
+    };
+
+    let currentRequests = [];
+
+    async function onConfigChange(config) {
+      const platformTitle = document.getElementById('platform-title');
+      if (platformTitle) platformTitle.textContent = config.platform_title || defaultConfig.platform_title;
+
+      const heroHeadline = document.getElementById('hero-headline');
+      if (heroHeadline) heroHeadline.textContent = config.hero_headline || defaultConfig.hero_headline;
+
+      const platformTagline = document.getElementById('platform-tagline');
+      if (platformTagline) platformTagline.textContent = config.platform_tagline || defaultConfig.platform_tagline;
+
+      const servicesTitle = document.getElementById('services-title');
+      if (servicesTitle) servicesTitle.textContent = config.services_title || defaultConfig.services_title;
+
+      const contactEmail = document.getElementById('contact-email');
+      if (contactEmail) contactEmail.textContent = config.contact_email || defaultConfig.contact_email;
+
+      const contactPhone = document.getElementById('contact-phone');
+      if (contactPhone) contactPhone.textContent = config.contact_phone || defaultConfig.contact_phone;
+
+      const contactBuilder = document.getElementById('contact-builder');
+      if (contactBuilder) contactBuilder.textContent = config.contact_builder || defaultConfig.contact_builder;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['platform_title', config.platform_title || defaultConfig.platform_title],
+        ['platform_tagline', config.platform_tagline || defaultConfig.platform_tagline],
+        ['hero_headline', config.hero_headline || defaultConfig.hero_headline],
+        ['services_title', config.services_title || defaultConfig.services_title],
+        ['contact_email', config.contact_email || defaultConfig.contact_email],
+        ['contact_phone', config.contact_phone || defaultConfig.contact_phone],
+        ['contact_builder', config.contact_builder || defaultConfig.contact_builder]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    // Data SDK Implementation
+    const dataHandler = {
+      onDataChanged(data) {
+        currentRequests = data;
+        const requestsList = document.getElementById('requestsList');
+
+        if (data.length === 0) {
+          requestsList.innerHTML = '<p class="text-center text-gray-500 py-8">No submissions yet. Add one above!</p>';
+          return;
+        }
+
+        requestsList.innerHTML = data.map(req => `
+          <div class="request-item">
+            <div>
+              <div class="font-mono font-bold text-white">${req.project_name || req.job_title}</div>
+              <div class="text-sm text-gray-400">${req.full_name} • ${new Date(req.submission_date).toLocaleDateString()}</div>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="status-badge">${req.project_status || 'Pending'}</span>
+              <button onclick="deleteRequest('${req.__backendId}')" class="text-red-400 hover:text-red-300 font-semibold text-sm">Delete</button>
+            </div>
+          </div>
+        `).join('');
+      }
+    };
+
+    async function initDataSdk() {
+      if (!window.dataSdk) return;
+      const result = await window.dataSdk.init(dataHandler);
+      if (!result.isOk) console.error('Data SDK init failed');
+    }
+
+    initDataSdk();
+
+    document.getElementById('serviceForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="loading-spinner"></span> Submitting...';
+
+      const request = {
+        project_name: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        job_category: document.getElementById('serviceType').value,
+        notes: document.getElementById('notes').value,
+        project_status: 'Pending',
+        submission_date: new Date().toISOString(),
+        full_name: document.getElementById('fullName').value
+      };
+
+      if (window.dataSdk) {
+        const result = await window.dataSdk.create(request);
+        if (result.isOk) {
+          showToast('✅ Submission received successfully!');
+          e.target.reset();
+        } else {
+          showToast('❌ Failed to submit. Please try again.');
+        }
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Submit';
+    });
+
+    async function deleteRequest(id) {
+      const req = currentRequests.find(r => r.__backendId === id);
+      if (req && window.dataSdk) {
+        await window.dataSdk.delete(req);
+        showToast('✓ Submission deleted');
+      }
+    }
+
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className = 'success-toast';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+
+    // Mobile menu
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    if (mobileMenu) {
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+  <div class="absolute inset-0 pointer-events-none opacity-20">
+   <div class="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-blue-500 to-transparent rounded-full blur-3xl"></div>
+   <div class="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-cyan-400 to-transparent rounded-full blur-3xl"></div>
+  </div>
+  <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+   <div class="opacity-0 animate-fade-up mb-6">
+    <span class="status-badge bg-gradient-to-r from-blue-600 to-cyan-500 text-white">🏗️ Global Construction Intelligence</span>
+   </div>
+   <h1 id="hero-headline" class="opacity-0 animate-fade-up delay-100 font-mono text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"><span class="gradient-text-blue">AI-Powered Construction</span><br><span class="text-white">Management Platform</span></h1>
+   <p id="platform-tagline" class="opacity-0 animate-fade-up delay-200 text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">Predictive scheduling, risk management, job matching, and site monitoring. Built for Dubai, Abu Dhabi, and global construction firms.</p>
+   <div class="opacity-0 animate-fade-up delay-300 flex flex-col sm:flex-row items-center justify-center gap-4">
+    <a href="#projects" class="cta-btn-blue px-8 py-4 rounded-full text-lg shadow-lg"> Explore Projects </a> <button onclick="document.getElementById('jobs').scrollIntoView({behavior:'smooth'})" class="px-8 py-4 border-2 border-blue-400 text-blue-300 font-semibold rounded-full hover:border-cyan-300 hover:bg-slate-700 transition-all"> Browse Jobs </button>
+   </div>
+  </div><!-- Services Section -->
+  <section id="services" class="py-24 bg-white">
+   <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+     <span class="status-badge">Our Services</span>
+     <h2 id="services-title" class="font-mono text-4xl md:text-5xl font-bold text-gray-900 mt-4">Government Services</h2>
+     <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Quick access to essential government permits, licenses, and registrations</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+     <div class="service-card bg-white rounded-2xl overflow-hidden p-6">
+      <div class="service-icon">
+       📋
+      </div>
+      <h3 class="font-mono text-xl font-bold text-gray-900 mt-4 mb-3">Business Registration</h3>
+      <p class="text-gray-600 text-sm leading-relaxed mb-4">Register your business and get official certification</p><a href="#request-form" class="text-green-600 font-semibold text-sm">Apply Now →</a>
+     </div>
+     <div class="service-card bg-white rounded-2xl overflow-hidden p-6">
+      <div class="service-icon">
+       🪪
+      </div>
+      <h3 class="font-mono text-xl font-bold text-gray-900 mt-4 mb-3">ID Card Renewal</h3>
+      <p class="text-gray-600 text-sm leading-relaxed mb-4">Renew your national ID and schedule collection</p><a href="#request-form" class="text-green-600 font-semibold text-sm">Apply Now →</a>
+     </div>
+     <div class="service-card bg-white rounded-2xl overflow-hidden p-6">
+      <div class="service-icon">
+       🏘️
+      </div>
+      <h3 class="font-mono text-xl font-bold text-gray-900 mt-4 mb-3">Property Registration</h3>
+      <p class="text-gray-600 text-sm leading-relaxed mb-4">Register land ownership and get deed documents</p><a href="#request-form" class="text-green-600 font-semibold text-sm">Apply Now →</a>
+     </div>
+     <div class="service-card bg-white rounded-2xl overflow-hidden p-6">
+      <div class="service-icon">
+       📄
+      </div>
+      <h3 class="font-mono text-xl font-bold text-gray-900 mt-4 mb-3">Permit Issuance</h3>
+      <p class="text-gray-600 text-sm leading-relaxed mb-4">Apply for construction and trade permits online</p><a href="#request-form" class="text-green-600 font-semibold text-sm">Apply Now →</a>
+     </div>
+     <div class="service-card bg-white rounded-2xl overflow-hidden p-6">
+      <div class="service-icon">
+       📜
+      </div>
+      <h3 class="font-mono text-xl font-bold text-gray-900 mt-4 mb-3">Certificate Request</h3>
+      <p class="text-gray-600 text-sm leading-relaxed mb-4">Request birth, marriage, or death certificates</p><a href="#request-form" class="text-green-600 font-semibold text-sm">Apply Now →</a>
+     </div>
+     <div class="service-card bg-white rounded-2xl overflow-hidden p-6">
+      <div class="service-icon">
+       🚗
+      </div>
+      <h3 class="font-mono text-xl font-bold text-gray-900 mt-4 mb-3">Vehicle Registration</h3>
+      <p class="text-gray-600 text-sm leading-relaxed mb-4">Register your vehicle and obtain license plates</p><a href="#request-form" class="text-green-600 font-semibold text-sm">Apply Now →</a>
+     </div>
+    </div>
+   </div>
+  </section><!-- Request Form Section -->
+  <section id="request-form" class="py-24 bg-gradient-to-br from-green-50 to-gray-50">
+   <div class="max-w-4xl mx-auto px-6">
+    <div class="text-center mb-12">
+     <h2 class="font-mono text-4xl md:text-5xl font-bold text-gray-900 mb-4">Submit Your Request</h2>
+     <p class="text-gray-600 text-lg">Fill out the form to request any government service</p>
+    </div>
+    <form id="serviceForm" class="service-form">
+     <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div><label class="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label> <input type="text" id="fullName" class="form-input w-full" placeholder="Your full name" required>
+      </div>
+      <div><label class="block text-sm font-semibold text-gray-700 mb-2">Email *</label> <input type="email" id="email" class="form-input w-full" placeholder="your.email@example.com" required>
+      </div>
+     </div>
+     <div class="grid md:grid-cols-2 gap-6 mb-6">
+      <div><label class="block text-sm font-semibold text-gray-700 mb-2">Phone *</label> <input type="tel" id="phone" class="form-input w-full" placeholder="+251912345678" required>
+      </div>
+      <div><label class="block text-sm font-semibold text-gray-700 mb-2">Service Type *</label> <select id="serviceType" class="form-input w-full" required> <option value="">Select a service</option> <option value="Business Registration">Business Registration</option> <option value="ID Card Renewal">ID Card Renewal</option> <option value="Property Registration">Property Registration</option> <option value="Permit Issuance">Permit Issuance</option> <option value="Certificate Request">Certificate Request</option> <option value="Vehicle Registration">Vehicle Registration</option> </select>
+      </div>
+     </div>
+     <div class="mb-6"><label class="block text-sm font-semibold text-gray-700 mb-2">Additional Details</label> <textarea id="notes" class="form-input w-full h-24 resize-none" placeholder="Any additional information..."></textarea>
+     </div><button type="submit" id="submitBtn" class="cta-btn w-full py-4 rounded-lg text-lg font-bold">Submit Request</button>
+    </form>
+   </div>
+  </section><!-- Track Section -->
+  <section id="track" class="py-24 bg-white">
+   <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+     <h2 class="font-mono text-4xl md:text-5xl font-bold text-gray-900 mb-4">Track Your Requests</h2>
+     <p class="text-gray-600 text-lg">View all submitted service requests and their status</p>
+    </div>
+    <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8">
+     <div id="requestsList" class="space-y-3">
+      <p class="text-center text-gray-500 py-8">No requests yet. Submit one above!</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Featured Section -->
+  <section id="about" class="py-24 bg-white">
+   <div class="max-w-6xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+     <div>
+      <span class="status-badge">Who We Are</span>
+      <h2 id="about-title" class="font-mono text-4xl md:text-5xl font-bold text-gray-900 mt-4 mb-6">About Ethiopian Government Services</h2>
+      <p id="about-description" class="text-lg text-gray-600 leading-relaxed mb-6">Our platform is dedicated to bringing government services to citizens digitally. We believe in transparent, efficient, and accessible public administration for all Ethiopians.</p>
+      <p class="text-lg text-gray-600 leading-relaxed mb-8">We're building a modern digital government platform that reduces bureaucracy, improves transparency, and puts citizens first in every interaction.</p>
+      <div class="flex gap-4">
+       <div class="flex-1">
+        <div class="font-mono text-2xl font-bold text-gray-900">
+         Transparent
+        </div>
+        <p class="text-sm text-gray-600 mt-2">Real-time status updates</p>
+       </div>
+       <div class="flex-1">
+        <div class="font-mono text-2xl font-bold text-gray-900">
+         Secure
+        </div>
+        <p class="text-sm text-gray-600 mt-2">End-to-end encryption</p>
+       </div>
+      </div>
+     </div>
+     <div class="grid grid-cols-2 gap-6">
+      <div class="bg-gradient-to-br from-green-100 to-emerald-50 rounded-2xl p-12 flex items-center justify-center h-64">
+       <span class="text-6xl">🏛️</span>
+      </div>
+      <div class="bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl p-12 flex items-center justify-center h-64">
+       <span class="text-6xl">💻</span>
+      </div>
+      <div class="bg-gradient-to-br from-purple-100 to-purple-50 rounded-2xl p-12 flex items-center justify-center h-64">
+       <span class="text-6xl">🔒</span>
+      </div>
+      <div class="bg-gradient-to-br from-green-100 to-green-50 rounded-2xl p-12 flex items-center justify-center h-64">
+       <span class="text-6xl">✅</span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Dashboard Analytics Section -->
+  <section id="dashboard" class="py-24 bg-gradient-to-br from-gray-50 to-gray-100">
+   <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+     <span class="status-badge">Real-Time Analytics</span>
+     <h2 class="font-mono text-4xl md:text-5xl font-bold text-gray-900 mt-4">Dashboard Overview</h2>
+     <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Monitor government services performance and citizen satisfaction</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+     <div class="stat-box bg-white">
+      <div class="font-mono text-4xl font-bold mb-2 text-green-600">
+       2,847
+      </div>
+      <div class="text-gray-600 font-semibold">
+       Active Applications
+      </div>
+      <div class="text-sm text-green-600 mt-2">
+       ↑ 12% this week
+      </div>
+     </div>
+     <div class="stat-box bg-white">
+      <div class="font-mono text-4xl font-bold mb-2 text-blue-600">
+       94%
+      </div>
+      <div class="text-gray-600 font-semibold">
+       Completion Rate
+      </div>
+      <div class="text-sm text-blue-600 mt-2">
+       ↑ 3% this month
+      </div>
+     </div>
+     <div class="stat-box bg-white">
+      <div class="font-mono text-4xl font-bold mb-2 text-purple-600">
+       2.3 hrs
+      </div>
+      <div class="text-gray-600 font-semibold">
+       Avg Processing Time
+      </div>
+      <div class="text-sm text-purple-600 mt-2">
+       ↓ 15% improvement
+      </div>
+     </div>
+     <div class="stat-box bg-white">
+      <div class="font-mono text-4xl font-bold mb-2 text-orange-600">
+       4.8/5
+      </div>
+      <div class="text-gray-600 font-semibold">
+       Citizen Satisfaction
+      </div>
+      <div class="text-sm text-orange-600 mt-2">
+       Based on 5,200 reviews
+      </div>
+     </div>
+    </div>
+    <div class="bg-white rounded-2xl p-8 border border-gray-200">
+     <h3 class="font-mono text-2xl font-bold text-gray-900 mb-6">Service Performance</h3>
+     <div class="space-y-4">
+      <div>
+       <div class="flex justify-between items-center mb-2">
+        <span class="font-semibold text-gray-700">Business Registration</span> <span class="text-sm text-green-600">856 processed</span>
+       </div>
+       <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+        <div class="bg-gradient-to-r from-green-500 to-emerald-600 h-full" style="width: 92%"></div>
+       </div>
+      </div>
+      <div>
+       <div class="flex justify-between items-center mb-2">
+        <span class="font-semibold text-gray-700">ID Card Renewal</span> <span class="text-sm text-blue-600">634 processed</span>
+       </div>
+       <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+        <div class="bg-gradient-to-r from-blue-500 to-cyan-600 h-full" style="width: 78%"></div>
+       </div>
+      </div>
+      <div>
+       <div class="flex justify-between items-center mb-2">
+        <span class="font-semibold text-gray-700">Property Registration</span> <span class="text-sm text-purple-600">412 processed</span>
+       </div>
+       <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+        <div class="bg-gradient-to-r from-purple-500 to-pink-600 h-full" style="width: 68%"></div>
+       </div>
+      </div>
+      <div>
+       <div class="flex justify-between items-center mb-2">
+        <span class="font-semibold text-gray-700">Permit Issuance</span> <span class="text-sm text-orange-600">298 processed</span>
+       </div>
+       <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+        <div class="bg-gradient-to-r from-orange-500 to-red-600 h-full" style="width: 55%"></div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Analytics & Reports Section -->
+  <section id="analytics" class="py-24 bg-white">
+   <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+     <span class="status-badge">Data Insights</span>
+     <h2 class="font-mono text-4xl md:text-5xl font-bold text-gray-900 mt-4">Advanced Analytics</h2>
+     <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Make data-driven decisions with comprehensive reports and insights</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8">
+     <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border border-green-200">
+      <h3 class="font-mono text-2xl font-bold text-gray-900 mb-6">Monthly Trends</h3>
+      <div class="space-y-4">
+       <div class="flex items-end gap-2 h-40 items-end">
+        <div class="flex-1 bg-green-400 rounded-t-lg opacity-80" style="height: 60%"></div>
+        <div class="flex-1 bg-green-500 rounded-t-lg opacity-90" style="height: 75%"></div>
+        <div class="flex-1 bg-green-600 rounded-t-lg" style="height: 100%"></div>
+        <div class="flex-1 bg-green-500 rounded-t-lg opacity-90" style="height: 85%"></div>
+        <div class="flex-1 bg-green-400 rounded-t-lg opacity-80" style="height: 70%"></div>
+       </div>
+       <p class="text-sm text-gray-600">📈 Applications trending upward</p>
+      </div>
+     </div>
+     <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border border-blue-200">
+      <h3 class="font-mono text-2xl font-bold text-gray-900 mb-6">Service Distribution</h3>
+      <div class="space-y-3">
+       <div class="flex items-center gap-4">
+        <div class="w-4 h-4 rounded-full bg-green-500"></div><span class="text-sm text-gray-600 flex-1">Business Registration</span> <span class="font-bold">32%</span>
+       </div>
+       <div class="flex items-center gap-4">
+        <div class="w-4 h-4 rounded-full bg-blue-500"></div><span class="text-sm text-gray-600 flex-1">ID Renewal</span> <span class="font-bold">24%</span>
+       </div>
+       <div class="flex items-center gap-4">
+        <div class="w-4 h-4 rounded-full bg-purple-500"></div><span class="text-sm text-gray-600 flex-1">Property Registration</span> <span class="font-bold">18%</span>
+       </div>
+       <div class="flex items-center gap-4">
+        <div class="w-4 h-4 rounded-full bg-orange-500"></div><span class="text-sm text-gray-600 flex-1">Permits &amp; Certificates</span> <span class="font-bold">26%</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- AI Tools Section -->
+  <section id="ai-tools" class="py-24 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+   <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+     <span class="status-badge bg-gradient-to-r from-purple-500 to-pink-500 text-white">🤖 Powered by AI</span>
+     <h2 class="font-mono text-4xl md:text-5xl font-bold mt-4">AI-Powered Services</h2>
+     <p class="text-gray-300 mt-4 max-w-2xl mx-auto">Advanced artificial intelligence for smarter government services</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+     <div class="bg-gradient-to-br from-purple-600 to-indigo-700 rounded-2xl p-8 border border-purple-500">
+      <div class="text-5xl mb-4">
+       🤖
+      </div>
+      <h3 class="font-mono text-xl font-bold mb-3">Smart Chatbot</h3>
+      <p class="text-purple-100 text-sm leading-relaxed">24/7 AI chatbot answering citizen questions in Amharic, Oromo, and English. Instant support for common inquiries.</p><a href="#" class="text-purple-300 font-semibold text-sm mt-4 inline-block hover:text-white transition">Launch Chatbot →</a>
+     </div>
+     <div class="bg-gradient-to-br from-pink-600 to-rose-700 rounded-2xl p-8 border border-pink-500">
+      <div class="text-5xl mb-4">
+       📄
+      </div>
+      <h3 class="font-mono text-xl font-bold mb-3">Document Scanner</h3>
+      <p class="text-pink-100 text-sm leading-relaxed">AI vision technology scans IDs, documents, and forms automatically. Extracts data in seconds with 99% accuracy.</p><a href="#" class="text-pink-300 font-semibold text-sm mt-4 inline-block hover:text-white transition">Try Scanner →</a>
+     </div>
+     <div class="bg-gradient-to-br from-orange-600 to-red-700 rounded-2xl p-8 border border-orange-500">
+      <div class="text-5xl mb-4">
+       🔮
+      </div>
+      <h3 class="font-mono text-xl font-bold mb-3">Predictive Analytics</h3>
+      <p class="text-orange-100 text-sm leading-relaxed">Machine learning predicts service demand, identifies trends, and optimizes resource allocation for better planning.</p><a href="#" class="text-orange-300 font-semibold text-sm mt-4 inline-block hover:text-white transition">View Reports →</a>
+     </div>
+     <div class="bg-gradient-to-br from-cyan-600 to-blue-700 rounded-2xl p-8 border border-cyan-500">
+      <div class="text-5xl mb-4">
+       🎯
+      </div>
+      <h3 class="font-mono text-xl font-bold mb-3">Fraud Detection</h3>
+      <p class="text-cyan-100 text-sm leading-relaxed">Advanced AI detects suspicious applications and anomalies in real-time to protect government resources.</p><a href="#" class="text-cyan-300 font-semibold text-sm mt-4 inline-block hover:text-white transition">Monitor System →</a>
+     </div>
+     <div class="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-2xl p-8 border border-emerald-500">
+      <div class="text-5xl mb-4">
+       💬
+      </div>
+      <h3 class="font-mono text-xl font-bold mb-3">Sentiment Analysis</h3>
+      <p class="text-emerald-100 text-sm leading-relaxed">Analyze citizen feedback and public sentiment to continuously improve government services and responsiveness.</p><a href="#" class="text-emerald-300 font-semibold text-sm mt-4 inline-block hover:text-white transition">Analyze Feedback →</a>
+     </div>
+     <div class="bg-gradient-to-br from-violet-600 to-purple-700 rounded-2xl p-8 border border-violet-500">
+      <div class="text-5xl mb-4">
+       ⚡
+      </div>
+      <h3 class="font-mono text-xl font-bold mb-3">Process Automation</h3>
+      <p class="text-violet-100 text-sm leading-relaxed">Automated workflows reduce manual processing time by 80%. Applications approved faster than ever.</p><a href="#" class="text-violet-300 font-semibold text-sm mt-4 inline-block hover:text-white transition">Configure Workflows →</a>
+     </div>
+    </div>
+   </div>
+  </section><!-- Google Cloud Architecture Section -->
+  <section class="py-24 bg-white">
+   <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+     <span class="status-badge">Infrastructure</span>
+     <h2 class="font-mono text-4xl md:text-5xl font-bold text-gray-900 mt-4">Built on Google Cloud</h2>
+     <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Enterprise-grade security, scalability, and reliability</p>
+    </div>
+    <div class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-12 border-2 border-gray-200">
+     <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+      <div class="text-center">
+       <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <span class="text-2xl">☁️</span>
+       </div>
+       <h4 class="font-mono font-bold text-gray-900 mb-1">Firebase Hosting</h4>
+       <p class="text-sm text-gray-600">SSL, CDN, fast delivery</p>
+      </div>
+      <div class="text-center">
+       <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <span class="text-2xl">⚙️</span>
+       </div>
+       <h4 class="font-mono font-bold text-gray-900 mb-1">Cloud Run</h4>
+       <p class="text-sm text-gray-600">Serverless APIs</p>
+      </div>
+      <div class="text-center">
+       <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <span class="text-2xl">💾</span>
+       </div>
+       <h4 class="font-mono font-bold text-gray-900 mb-1">Firestore</h4>
+       <p class="text-sm text-gray-600">Real-time database</p>
+      </div>
+      <div class="text-center">
+       <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <span class="text-2xl">🤖</span>
+       </div>
+       <h4 class="font-mono font-bold text-gray-900 mb-1">Vertex AI</h4>
+       <p class="text-sm text-gray-600">ML &amp; AI models</p>
+      </div>
+      <div class="text-center">
+       <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <span class="text-2xl">🔐</span>
+       </div>
+       <h4 class="font-mono font-bold text-gray-900 mb-1">Secret Manager</h4>
+       <p class="text-sm text-gray-600">Secure credentials</p>
+      </div>
+     </div>
+     <div class="mt-12 p-6 bg-white rounded-xl border border-gray-200">
+      <h4 class="font-mono font-bold text-gray-900 mb-4">Architecture Stack</h4>
+      <div class="space-y-3 text-sm text-gray-600 font-mono">
+       <div>
+        Frontend → <span class="text-green-600">Firebase Hosting</span>
+       </div>
+       <div>
+        APIs → <span class="text-blue-600">Cloud Run / Cloud Functions</span>
+       </div>
+       <div>
+        Data → <span class="text-purple-600">Firestore / Cloud SQL</span>
+       </div>
+       <div>
+        AI/ML → <span class="text-orange-600">Vertex AI, Vision API, Dialogflow</span>
+       </div>
+       <div>
+        Security → <span class="text-red-600">IAM, Secret Manager, API Gateway</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Security & Compliance Section -->
+  <section class="py-24 bg-gradient-to-br from-gray-50 to-gray-100">
+   <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+     <span class="status-badge">Trust &amp; Security</span>
+     <h2 class="font-mono text-4xl md:text-5xl font-bold text-gray-900 mt-4">Enterprise Security</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8">
+     <div class="bg-white rounded-2xl p-8 border border-gray-200">
+      <h3 class="font-mono text-2xl font-bold text-gray-900 mb-6">🔒 Data Protection</h3>
+      <ul class="space-y-3">
+       <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> <span class="text-gray-600">End-to-end encryption for all data</span></li>
+       <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> <span class="text-gray-600">Regular security audits and penetration testing</span></li>
+       <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> <span class="text-gray-600">DLP (Data Loss Prevention) systems</span></li>
+       <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> <span class="text-gray-600">ISO 27001 &amp; SOC 2 compliance</span></li>
+      </ul>
+     </div>
+     <div class="bg-white rounded-2xl p-8 border border-gray-200">
+      <h3 class="font-mono text-2xl font-bold text-gray-900 mb-6">👤 Access Control</h3>
+      <ul class="space-y-3">
+       <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> <span class="text-gray-600">Role-Based Access Control (RBAC)</span></li>
+       <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> <span class="text-gray-600">Multi-factor authentication (MFA)</span></li>
+       <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> <span class="text-gray-600">Audit logging &amp; monitoring</span></li>
+       <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> <span class="text-gray-600">Least privilege principle</span></li>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </section><!-- Stats Section -->
+  <section class="py-24 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
+   <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-8">
+     <div class="stat-box">
+      <div class="font-mono text-5xl font-bold mb-3 text-green-400">
+       100K+
+      </div>
+      <div class="font-sans text-gray-400">
+       Citizens Served
+      </div>
+     </div>
+     <div class="stat-box">
+      <div class="font-mono text-5xl font-bold mb-3 text-green-400">
+       6
+      </div>
+      <div class="font-sans text-gray-400">
+       Active Services
+      </div>
+     </div>
+     <div class="stat-box">
+      <div class="font-mono text-5xl font-bold mb-3 text-green-400">
+       99.9%
+      </div>
+      <div class="font-sans text-gray-400">
+       Uptime
+      </div>
+     </div>
+     <div class="stat-box">
+      <div class="font-mono text-5xl font-bold mb-3 text-green-400">
+       24/7
+      </div>
+      <div class="font-sans text-gray-400">
+       Available
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Ad Space 2 -->
+  <div class="max-w-6xl mx-auto px-6 py-8">
+   <div class="status-badge" style="display:block; padding:20px; text-align:center;">
+    📊 Platform Statistics &amp; Updates
+   </div>
+  </div><!-- Ad Space 2 --> <!-- Newsletter Section -->
+  <section class="py-24 bg-gradient-to-r from-green-50 to-gray-100">
+   <div class="max-w-4xl mx-auto px-6 text-center">
+    <h2 class="font-mono text-4xl md:text-5xl font-bold text-gray-900 mb-4">Stay Updated</h2>
+    <p class="text-xl text-gray-600 mb-8">Get notifications about new services and important government announcements</p>
+    <form class="service-form inline-block w-full max-w-lg" onsubmit="event.preventDefault(); this.style.opacity='0.6'; setTimeout(() => {this.style.opacity='1'; this.reset();}, 2000);">
+     <div class="flex gap-2">
+      <input type="email" placeholder="Enter your email address" required class="form-input flex-1"> <button type="submit" class="cta-btn px-8 py-3 rounded-lg font-bold">Subscribe</button>
+     </div>
+    </form>
+    <p class="text-sm text-gray-500 mt-6">We respect your privacy. Unsubscribe at any time.</p>
+   </div>
+  </section><!-- Contact Section -->
+  <section id="contact" class="py-24 bg-white">
+   <div class="max-w-4xl mx-auto px-6">
+    <div class="text-center mb-16">
+     <h2 class="font-mono text-4xl md:text-5xl font-bold text-gray-900 mb-4">Get in Touch</h2>
+     <p class="text-xl text-gray-600">Have questions about our services? Contact us</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8 mb-16">
+     <div class="text-center p-8 bg-gray-50 rounded-2xl">
+      <div class="text-4xl mb-4">
+       📧
+      </div>
+      <h3 class="font-mono text-xl font-bold text-gray-900 mb-2">Email</h3>
+      <p id="contact-email" class="text-gray-600 font-medium">info@gov.et</p>
+     </div>
+     <div class="text-center p-8 bg-gray-50 rounded-2xl">
+      <div class="text-4xl mb-4">
+       📱
+      </div>
+      <h3 class="font-mono text-xl font-bold text-gray-900 mb-2">Phone</h3>
+      <p id="contact-phone" class="text-gray-600 font-medium">+251 1 11 55 17 22</p>
+     </div>
+     <div class="text-center p-8 bg-gray-50 rounded-2xl">
+      <div class="text-4xl mb-4">
+       📍
+      </div>
+      <h3 class="font-mono text-xl font-bold text-gray-900 mb-2">Location</h3>
+      <p id="contact-location" class="text-gray-600 font-medium">Addis Ababa, Ethiopia</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="bg-gray-900 text-white py-16">
+   <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-12 mb-12">
+     <div>
+      <div class="flex items-center gap-2 mb-4">
+       <div class="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center">
+        <span class="font-mono font-bold">🏛️</span>
+       </div><span class="font-mono text-xl font-bold">EthGov</span>
+      </div>
+      <p class="text-gray-400 mb-6">Digital government services for all citizens</p>
+      <div class="flex gap-4">
+       <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-600 transition">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+        </svg></a> <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-600 transition">
+        <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z" />
+        </svg></a>
+      </div>
+     </div>
+     <div>
+      <h4 class="font-mono text-lg font-bold mb-6">Services</h4>
+      <ul class="space-y-3">
+       <li><a href="#" class="text-gray-400 hover:text-green-500 transition">Business Registration</a></li>
+       <li><a href="#" class="text-gray-400 hover:text-green-500 transition">ID Renewal</a></li>
+       <li><a href="#" class="text-gray-400 hover:text-green-500 transition">Permits</a></li>
+       <li><a href="#" class="text-gray-400 hover:text-green-500 transition">Certificates</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="font-mono text-lg font-bold mb-6">Company</h4>
+      <ul class="space-y-3">
+       <li><a href="#" class="text-gray-400 hover:text-green-500 transition">About Us</a></li>
+       <li><a href="#" class="text-gray-400 hover:text-green-500 transition">Contact</a></li>
+       <li><a href="#" class="text-gray-400 hover:text-green-500 transition">Careers</a></li>
+       <li><a href="#" class="text-gray-400 hover:text-green-500 transition">Blog</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="font-mono text-lg font-bold mb-6">Legal</h4>
+      <ul class="space-y-3">
+       <li><a href="#" class="text-gray-400 hover:text-green-500 transition">Terms of Use</a></li>
+       <li><a href="#" class="text-gray-400 hover:text-green-500 transition">Privacy Policy</a></li>
+       <li><a href="#" class="text-gray-400 hover:text-green-500 transition">Security</a></li>
+       <li><a href="#" class="text-gray-400 hover:text-green-500 transition">Accessibility</a></li>
+      </ul>
+     </div>
+    </div>
+    <div class="pt-8 border-t border-gray-800 text-center text-gray-400">
+     <p>© 2024 Ethiopian Government Services Portal. All rights reserved. | Digital Ethiopia Initiative</p>
+    </div>
+   </div>
+  </footer>
+  <script>
+    const defaultConfig = {
+      platform_title: 'EthGov Services',
+      platform_tagline: 'Access permits, licenses, registrations, and official documents online. Transparent. Fast. Secure.',
+      hero_headline: 'Efficient Government Services for All Citizens',
+      services_title: 'Government Services Available Online',
+      about_title: 'About Ethiopian Government Services',
+      about_description: 'Our platform is dedicated to bringing government services to citizens digitally.',
+      contact_email: 'info@gov.et',
+      contact_phone: '+251 1 11 55 17 22',
+      contact_location: 'Addis Ababa, Ethiopia'
+    };
+
+    let currentRequests = [];
+
+    async function onConfigChange(config) {
+      const platformTitle = document.getElementById('platform-title');
+      if (platformTitle) platformTitle.textContent = config.platform_title || defaultConfig.platform_title;
+
+      const heroHeadline = document.getElementById('hero-headline');
+      if (heroHeadline) heroHeadline.textContent = config.hero_headline || defaultConfig.hero_headline;
+
+      const platformTagline = document.getElementById('platform-tagline');
+      if (platformTagline) platformTagline.textContent = config.platform_tagline || defaultConfig.platform_tagline;
+
+      const servicesTitle = document.getElementById('services-title');
+      if (servicesTitle) servicesTitle.textContent = config.services_title || defaultConfig.services_title;
+
+      const aboutTitle = document.getElementById('about-title');
+      if (aboutTitle) aboutTitle.textContent = config.about_title || defaultConfig.about_title;
+
+      const aboutDesc = document.getElementById('about-description');
+      if (aboutDesc) aboutDesc.textContent = config.about_description || defaultConfig.about_description;
+
+      const contactEmail = document.getElementById('contact-email');
+      if (contactEmail) contactEmail.textContent = config.contact_email || defaultConfig.contact_email;
+
+      const contactPhone = document.getElementById('contact-phone');
+      if (contactPhone) contactPhone.textContent = config.contact_phone || defaultConfig.contact_phone;
+
+      const contactLocation = document.getElementById('contact-location');
+      if (contactLocation) contactLocation.textContent = config.contact_location || defaultConfig.contact_location;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['platform_title', config.platform_title || defaultConfig.platform_title],
+        ['platform_tagline', config.platform_tagline || defaultConfig.platform_tagline],
+        ['hero_headline', config.hero_headline || defaultConfig.hero_headline],
+        ['services_title', config.services_title || defaultConfig.services_title],
+        ['about_title', config.about_title || defaultConfig.about_title],
+        ['about_description', config.about_description || defaultConfig.about_description],
+        ['contact_email', config.contact_email || defaultConfig.contact_email],
+        ['contact_phone', config.contact_phone || defaultConfig.contact_phone],
+        ['contact_location', config.contact_location || defaultConfig.contact_location]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    // Data SDK Implementation
+    const dataHandler = {
+      onDataChanged(data) {
+        currentRequests = data;
+        const requestsList = document.getElementById('requestsList');
+        const emptyState = document.getElementById('emptyState');
+
+        if (data.length === 0) {
+          requestsList.innerHTML = '<p class="text-center text-gray-500 py-8">No requests yet. Submit one above!</p>';
+          emptyState.style.display = 'block';
+          return;
+        }
+
+        emptyState.style.display = 'none';
+        requestsList.innerHTML = data.map(req => `
+          <div class="request-item">
+            <div>
+              <div class="font-mono font-bold text-gray-900">${req.service_type}</div>
+              <div class="text-sm text-gray-600">${req.full_name} • ${new Date(req.submission_date).toLocaleDateString()}</div>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="status-badge">${req.status || 'Pending'}</span>
+              <button onclick="deleteRequest('${req.__backendId}')" class="text-red-600 hover:text-red-700 font-semibold text-sm">Delete</button>
+            </div>
+          </div>
+        `).join('');
+      }
+    };
+
+    async function initDataSdk() {
+      if (!window.dataSdk) return;
+      const result = await window.dataSdk.init(dataHandler);
+      if (!result.isOk) console.error('Data SDK init failed');
+    }
+
+    initDataSdk();
+
+    document.getElementById('serviceForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="loading-spinner"></span> Submitting...';
+
+      const request = {
+        full_name: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        service_type: document.getElementById('serviceType').value,
+        notes: document.getElementById('notes').value,
+        status: 'Pending',
+        submission_date: new Date().toISOString()
+      };
+
+      if (window.dataSdk) {
+        const result = await window.dataSdk.create(request);
+        if (result.isOk) {
+          showToast('✅ Request submitted successfully!');
+          e.target.reset();
+        } else {
+          showToast('❌ Failed to submit. Please try again.');
+        }
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Submit Request';
+    });
+
+    async function deleteRequest(id) {
+      const req = currentRequests.find(r => r.__backendId === id);
+      if (req && window.dataSdk) {
+        await window.dataSdk.delete(req);
+        showToast('✓ Request deleted');
+      }
+    }
+
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className = 'success-toast';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+
+    // Mobile menu
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    if (mobileMenu) {
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d4ab98124f1fbc6',t:'MTc3MjIyNzIxMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
